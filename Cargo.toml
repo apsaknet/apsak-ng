@@ -76,22 +76,22 @@ egui-notify = "=0.11.0"
 # apsak-wrpc-server = "0.13.4"
 # apsakd = "0.13.4"
 
-apsak-addresses = { path = "../rusty-apsak/crypto/addresses" }
-apsak-alloc = { path = "../rusty-apsak/utils/alloc" }
-apsak-bip32 = { path = "../rusty-apsak/wallet/bip32" }
-apsak-cli = { path = "../rusty-apsak/cli" }
-apsak-consensus-core = { path = "../rusty-apsak/consensus/core" }
-apsak-core = { path = "../rusty-apsak/core" }
-apsak-metrics-core = { path = "../rusty-apsak/metrics/core" }
-apsak-notify = { path = "../rusty-apsak/notify" }
-apsak-rpc-core = { path = "../rusty-apsak/rpc/core" }
-apsak-rpc-service = { path = "../rusty-apsak/rpc/service" }
-apsak-utils = { path = "../rusty-apsak/utils" }
-apsak-wallet-core = { path = "../rusty-apsak/wallet/core" }
-apsak-wallet-keys = { path = "../rusty-apsak/wallet/keys" }
-apsak-wrpc-client = { path = "../rusty-apsak/rpc/wrpc/client" }
-apsak-wrpc-server = { path = "../rusty-apsak/rpc/wrpc/server" }
-apsakd = { path = "../rusty-apsak/apsakd" }
+apsak-addresses = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-alloc = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-bip32 = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-cli = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-consensus-core = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-core = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-metrics-core = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-notify = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-rpc-core = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-rpc-service = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-utils = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-wallet-core = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-wallet-keys = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-wrpc-client = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsak-wrpc-server = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
+apsakd = { git = "https://github.com/apsaknet/rusty-apsak.git", branch = "master" }
 
 # _________________________________________________________
 #  _ _ _ ____ ____ _  _ ____ _    ____ _ _ _    ____ ____ 
