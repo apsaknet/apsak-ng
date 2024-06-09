@@ -28,7 +28,7 @@ impl<'render> MnemonicPresenter<'render> {
     pub fn notice(&self) -> &'static str {
         "Your mnemonic phrase allows you to re-create your private key. \
         The person who has access to this mnemonic will have full control of \
-        the Kaspa stored in it. Keep your mnemonic safe. Write it down and \
+        the apsaK stored in it. Keep your mnemonic safe. Write it down and \
         store it in a safe, preferably in a fire-resistant location. Do not \
         store your mnemonic on this computer or a mobile device. This wallet \
         will never ask you for this mnemonic phrase unless you manually \

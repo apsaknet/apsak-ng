@@ -6,7 +6,7 @@ pub struct ThemeColor {
     pub name: String,
     pub dark_mode: bool,
 
-    pub kaspa_color: Color32,
+    pub apsak_color: Color32,
     pub hyperlink_color: Color32,
     pub node_data_color: Color32,
     pub balance_color: Color32,
@@ -73,7 +73,7 @@ impl ThemeColor {
         Self {
             name: "Dark".to_string(),
             dark_mode: true,
-            kaspa_color: Color32::from_rgb(58, 221, 190),
+            apsak_color: Color32::from_rgb(58, 221, 190),
             hyperlink_color: Color32::from_rgb(141, 184, 178),
 
             default_color: Color32::LIGHT_GRAY,
@@ -142,7 +142,7 @@ impl ThemeColor {
         Self {
             name: "Light".to_string(),
             dark_mode: false,
-            kaspa_color: Color32::from_rgb(58, 221, 190),
+            apsak_color: Color32::from_rgb(58, 221, 190),
             hyperlink_color: Color32::from_rgb(15, 84, 73),
 
             default_color: Color32::DARK_GRAY,

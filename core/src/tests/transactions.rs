@@ -1,9 +1,9 @@
 use crate::imports::*;
-use kaspa_wallet_core::tx::mass::MassCalculator;
+use apsak_wallet_core::tx::mass::MassCalculator;
 
 #[test]
 fn test_generic_transaction_mass() {
-    use kaspa_consensus_core::tx::*;
+    use apsak_consensus_core::tx::*;
 
     let script_public_key = ScriptPublicKey::new(
         0,
@@ -54,7 +54,7 @@ fn test_generic_transaction_mass() {
             },
         ],
         0,
-        kaspa_consensus_core::subnets::SUBNETWORK_ID_COINBASE,
+        apsak_consensus_core::subnets::SUBNETWORK_ID_COINBASE,
         0,
         vec![9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     );

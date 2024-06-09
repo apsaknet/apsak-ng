@@ -3,8 +3,8 @@ use crate::imports::*;
 use crate::interop::transport;
 use crate::interop::transport::Target;
 use crate::interop::{Adaptor, Request};
-pub use kaspa_wallet_core::api::transport::BorshCodec;
-pub use kaspa_wallet_core::api::transport::{EventHandler, WalletServer};
+pub use apsak_wallet_core::api::transport::BorshCodec;
+pub use apsak_wallet_core::api::transport::{EventHandler, WalletServer};
 
 pub struct Client {
     _sender: Arc<dyn transport::Sender>,
@@ -36,11 +36,11 @@ impl Client {
     pub async fn handle_message(&self, target: Target, data: Vec<u8>) -> Result<Option<Vec<u8>>> {
         match target {
             Target::Wallet => {
-                let event = Box::new(kaspa_wallet_core::events::Events::try_from_slice(&data)?);
+                let event = Box::new(apsak_wallet_core::events::Events::try_from_slice(&data)?);
 
                 self.application_events
                     .sender
-                    .try_send(kaspa_ng_core::events::Events::Wallet { event })
+                    .try_send(apsak_ng_core::events::Events::Wallet { event })
                     .unwrap();
 
                 Ok(None)

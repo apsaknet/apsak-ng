@@ -1,6 +1,6 @@
 use crate::imports::*;
-use kaspa_consensus_core::config::params::Params;
-use kaspa_wallet_core::utxo::NetworkParams;
+use apsak_consensus_core::config::params::Params;
+use apsak_wallet_core::utxo::NetworkParams;
 
 const BASIC_TRANSACTION_MASS: u64 = 1281;
 
@@ -137,7 +137,7 @@ impl Network {
 
     pub fn describe(&self) -> &str {
         match self {
-            Network::Mainnet => i18n("Main Kaspa network"),
+            Network::Mainnet => i18n("Main apsaK network"),
             Network::Testnet10 => i18n("1 BPS test network"),
             Network::Testnet11 => i18n("10 BPS test network"),
         }

@@ -1,14 +1,14 @@
 [package]
-name = "kaspa-ng-macros"
+name = "apsak-ng-macros"
 version.workspace = true
 edition.workspace = true
 repository.workspace = true
 license = "MIT OR Apache-2.0"
-keywords = ["kaspa-ng"]
+keywords = ["apsak-ng"]
 categories = []
 exclude = ["/.*", "/test"]
 description = """
-Macros for the Kaspa NG project
+Macros for the apsaK NG project
 """
 
 [lib]

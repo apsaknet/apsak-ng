@@ -4,9 +4,9 @@ use crate::market::*;
 use crate::mobile::MobileMenu;
 use egui::load::Bytes;
 use egui_notify::Toasts;
-use kaspa_wallet_core::api::TransactionsDataGetResponse;
-use kaspa_wallet_core::events::Events as CoreWallet;
-use kaspa_wallet_core::storage::{Binding, Hint, PrvKeyDataInfo};
+use apsak_wallet_core::api::TransactionsDataGetResponse;
+use apsak_wallet_core::events::Events as CoreWallet;
+use apsak_wallet_core::storage::{Binding, Hint, PrvKeyDataInfo};
 use std::borrow::Cow;
 #[allow(unused_imports)]
 use workflow_i18n::*;
@@ -173,8 +173,8 @@ impl Core {
 
         let storage = Storage::default();
         #[cfg(not(target_arch = "wasm32"))]
-        if settings.node.kaspad_daemon_storage_folder_enable {
-            storage.track_storage_root(Some(settings.node.kaspad_daemon_storage_folder.as_str()));
+        if settings.node.apsakd_daemon_storage_folder_enable {
+            storage.track_storage_root(Some(settings.node.apsakd_daemon_storage_folder.as_str()));
         }
 
         let mut this = Self {
@@ -262,7 +262,7 @@ impl Core {
             #[cfg(not(target_arch = "wasm32"))]
             {
                 let type_id = self.module.type_id();
-                crate::runtime::services::kaspa::update_logs_flag()
+                crate::runtime::services::apsak::update_logs_flag()
                     .store(type_id == TypeId::of::<modules::Logs>(), Ordering::Relaxed);
             }
         }
@@ -385,7 +385,7 @@ impl Core {
                 .change_current_network(network);
             self.store_settings();
             self.runtime
-                .kaspa_service()
+                .apsak_service()
                 .update_services(&self.settings.node, None);
         }
     }
@@ -470,7 +470,7 @@ impl eframe::App for Core {
 
 impl Core {
     fn render_frame(&mut self, ctx: &Context, frame: &mut eframe::Frame) {
-        window_frame(self.window_frame, ctx, "Kaspa NG", |ui| {
+        window_frame(self.window_frame, ctx, "apsaK NG", |ui| {
             if !self.settings.initialized {
                 egui::CentralPanel::default().show_inside(ui, |ui| {
                     self.modules
@@ -637,7 +637,7 @@ impl Core {
         let logo_size = logo_rect.size();
         Image::new(ImageSource::Bytes {
             uri: Cow::Borrowed("bytes://logo.svg"),
-            bytes: Bytes::Static(crate::app::KASPA_NG_LOGO_SVG),
+            bytes: Bytes::Static(crate::app::APSAK_NG_LOGO_SVG),
         })
         .maintain_aspect_ratio(true)
         // .max_size(logo_size)
@@ -783,7 +783,7 @@ impl Core {
                         network_id: _,
                         metrics,
                     } => {
-                        // log_info!("Kaspa NG - received metrics event {metrics:?}");
+                        // log_info!("apsaK NG - received metrics event {metrics:?}");
 
                         match metrics {
                             MetricsUpdate::WalletMetrics {

@@ -1,4 +1,4 @@
-use kaspa_wallet_core::account::{
+use apsak_wallet_core::account::{
     BIP32_ACCOUNT_KIND, KEYPAIR_ACCOUNT_KIND, LEGACY_ACCOUNT_KIND, MULTISIG_ACCOUNT_KIND,
 };
 
@@ -228,8 +228,8 @@ pub trait DescribeAccount {
 impl DescribeAccount for AccountKind {
     fn describe(&self) -> (&'static str, &'static str) {
         match self.as_ref() {
-            LEGACY_ACCOUNT_KIND => ("Legacy Account", "KDX, PWA (kaspanet.io)"),
-            BIP32_ACCOUNT_KIND => ("Kaspa Core BIP32", "kaspawallet, kaspium"),
+            LEGACY_ACCOUNT_KIND => ("Legacy Account", "KDX, PWA (apsaknet.io)"),
+            BIP32_ACCOUNT_KIND => ("apsaK Core BIP32", "apsakwallet, kaspium"),
             MULTISIG_ACCOUNT_KIND => ("Multi-Signature", ""),
             KEYPAIR_ACCOUNT_KIND => ("Keypair", "secp256k1"),
             _ => ("", ""),

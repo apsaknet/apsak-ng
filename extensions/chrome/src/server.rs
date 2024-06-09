@@ -1,8 +1,8 @@
-use kaspa_ng_core::{
-    imports::{KaspaRpcClient, MetricsUpdateKind, NetworkId},
+use apsak_ng_core::{
+    imports::{ApsakRpcClient, MetricsUpdateKind, NetworkId},
     interop::{PendingRequest, Request, ServerAction},
 };
-use kaspa_wallet_core::rpc::{
+use apsak_wallet_core::rpc::{
     // ConnectOptions, ConnectStrategy, RpcCtl,
     DynRpcApi,
     Resolver,
@@ -13,7 +13,7 @@ use kaspa_wallet_core::rpc::{
 use crate::imports::*;
 pub type PortListenerClosure = Closure<dyn FnMut(chrome_runtime_port::Port) -> JsValue>;
 pub type PortEventClosure = Closure<dyn FnMut(JsValue) -> JsValue>;
-use kaspa_ng_core::interop::Target;
+use apsak_ng_core::interop::Target;
 use rand::Rng;
 use std::collections::HashMap;
 use workflow_core::enums::Describe;
@@ -172,7 +172,7 @@ impl Server {
 
     pub fn create_rpc_client(network_id: NetworkId) -> Result<Rpc> {
         let resolver = Resolver::default();
-        let wrpc_client = Arc::new(KaspaRpcClient::new_with_args(
+        let wrpc_client = Arc::new(ApsakRpcClient::new_with_args(
             WrpcEncoding::Borsh,
             None,
             Some(resolver),
@@ -347,7 +347,7 @@ impl Server {
         format!("handle_port_event: got msg: {msg_jsv:?}").into()
     }
 
-    // Handle message from kaspa-ng-core (client)
+    // Handle message from apsak-ng-core (client)
     fn register_listener(self: &Arc<Self>) {
         let this = self.clone();
 

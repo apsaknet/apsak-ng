@@ -12,7 +12,7 @@ pub enum Error {
     Eframe(String),
 
     #[error(transparent)]
-    WalletError(#[from] kaspa_wallet_core::error::Error),
+    WalletError(#[from] apsak_wallet_core::error::Error),
 
     #[error("Not a local wallet")]
     WalletIsNotLocal,
@@ -33,7 +33,7 @@ pub enum Error {
     TryRecvError,
 
     #[error(transparent)]
-    WrpcClientError(#[from] kaspa_wrpc_client::error::Error),
+    WrpcClientError(#[from] apsak_wrpc_client::error::Error),
 
     #[error(transparent)]
     WorkflowStorage(#[from] workflow_store::error::Error),
@@ -42,16 +42,16 @@ pub enum Error {
     ChannelError(String),
 
     #[error(transparent)]
-    Bip32(#[from] kaspa_bip32::Error),
+    Bip32(#[from] apsak_bip32::Error),
 
-    #[error("Missing external kaspad node binary")]
-    MissingExternalKaspadBinary,
+    #[error("Missing external apsakd node binary")]
+    MissingExternalApsakdBinary,
 
     #[error("Invalid URL: {0}")]
     InvalidUrl(String),
 
     #[error(transparent)]
-    RpcError(#[from] kaspa_rpc_core::error::RpcError),
+    RpcError(#[from] apsak_rpc_core::error::RpcError),
 
     #[error("Node startup error: {0}")]
     NodeStartupError(std::io::Error),
@@ -60,7 +60,7 @@ pub enum Error {
     NodeStdoutHandleError,
 
     #[error("Metrics: {0}")]
-    Metrics(#[from] kaspa_metrics_core::error::Error),
+    Metrics(#[from] apsak_metrics_core::error::Error),
 
     #[error(transparent)]
     AddrParseError(#[from] AddrParseError),
@@ -75,7 +75,7 @@ pub enum Error {
     WalletOpenAccountDescriptors,
 
     #[error(transparent)]
-    AddressError(#[from] kaspa_addresses::AddressError),
+    AddressError(#[from] apsak_addresses::AddressError),
 
     #[error("Invalid network type")]
     InvalidNetworkType,
@@ -90,7 +90,7 @@ pub enum Error {
     SerdeJson(#[from] serde_json::Error),
 
     #[error(transparent)]
-    NetworkType(#[from] kaspa_consensus_core::network::NetworkTypeError),
+    NetworkType(#[from] apsak_consensus_core::network::NetworkTypeError),
 
     #[error("Account creation error")]
     AccountCreationError,

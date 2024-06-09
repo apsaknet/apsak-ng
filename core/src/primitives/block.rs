@@ -1,5 +1,5 @@
 use crate::imports::*;
-use kaspa_rpc_core::RpcBlock;
+use apsak_rpc_core::RpcBlock;
 
 #[derive(Clone)]
 pub struct BlockDagGraphSettings {
@@ -68,7 +68,7 @@ impl DagBlock {
         &self.data
     }
 
-    pub fn direct_parents(&self) -> &[KaspaHash] {
+    pub fn direct_parents(&self) -> &[apsaKHash] {
         self.data.header.direct_parents()
     }
 }
@@ -92,7 +92,7 @@ impl DaaBucket {
         self.update(settings);
     }
 
-    pub fn update_vspc(&mut self, hash: KaspaHash, flag: bool, settings: &BlockDagGraphSettings) {
+    pub fn update_vspc(&mut self, hash: apsaKHash, flag: bool, settings: &BlockDagGraphSettings) {
         if let Some(block) = self.blocks.iter_mut().find(|b| b.data.header.hash == hash) {
             block.vspc = flag;
             block.settled = false;

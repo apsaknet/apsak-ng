@@ -9,9 +9,9 @@
 	.st3{display:inline;fill:none;stroke:#DF0A80;stroke-width:3;stroke-miterlimit:10;}
 	.st4{display:inline;}
 	.st5{display:inline;clip-path:url(#SVGID_00000098922425316251233040000006767101842042143156_);}
-	.st6{fill:#70C7BA;}
-	.st7{fill:#FFFFFF;}
-	.st8{fill:#23AD8F;}
+	.st6{fill:#ba6173;}
+	.st7{fill:#000000;}
+	.st8{fill:#23AD8F;}D
 	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#23AD8F;}
 	.st10{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
 	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#FFD700;}
@@ -163,10 +163,10 @@
 	.st153{fill:#FDEF54;}
 	.st154{fill:#00EF8B;}
 	.st155{opacity:0.6;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_00000090284435500561647730000012478772775252441274_);}
-	.st156{fill:#4A998C;}
-	.st157{fill:#6FC7BA;}
-	.st158{fill:#49EACB;}
-	.st159{opacity:0.6;fill:#4B8C83;}
+	.st156{fill:#AC4C5F;}
+	.st157{fill:#b61534;}
+	.st158{fill:#b61534;}
+	.st159{opacity:0.6;fill:#b61534;}
 	.st160{filter:url(#Adobe_OpacityMaskFilter);}
 	.st161{filter:url(#Adobe_OpacityMaskFilter_00000111908703746053188410000010508507652228306601_);}
 	
@@ -214,8 +214,8 @@
 	<g>
 		
 			<linearGradient id="SVGID_00000026150756542123002780000011128156546536160943_" gradientUnits="userSpaceOnUse" x1="296.9414" y1="876.4201" x2="296.9414" y2="448.4415" gradientTransform="matrix(0.999 4.533572e-02 -4.533572e-02 0.999 42.6167 48.9155)">
-			<stop  offset="0.5481" style="stop-color:#49EACB"/>
-			<stop  offset="1" style="stop-color:#49EACB;stop-opacity:0"/>
+			<stop  offset="0.5481" style="stop-color:#b61534"/>
+			<stop  offset="1" style="stop-color:#b61534;stop-opacity:0"/>
 		</linearGradient>
 		
 			<polygon style="opacity:0.6;fill-rule:evenodd;clip-rule:evenodd;fill:url(#SVGID_00000026150756542123002780000011128156546536160943_);" points="
@@ -262,7 +262,7 @@
 		<g>
 			
 				<ellipse transform="matrix(0.2464 -0.9692 0.9692 0.2464 -104.9134 553.0344)" class="st7" cx="303.2" cy="344" rx="76" ry="70.9"/>
-			<g>
+			<g transform="scale(-1, 1) translate(-610, 0)">
 				<path class="st157" d="M399.8,294.1c-5.9-13.1-14.9-25.2-25.2-34.9c-10.3-9.7-23.3-16.9-36.7-22c-13-5-27.3-7.2-42-6.8
 					c-14.7,0.4-29.8,1.4-42.5,7c-13.1,5.9-23.9,16.6-33.7,26.9c-9.7,10.3-21.1,21.2-26.2,34.6c-5,13-2.8,28.5-2.4,43.2
 					c0.4,14.7,1.9,29.1,7.5,41.8c5.9,13.1,17.3,22.2,27.6,31.9c10.3,9.7,19.7,21.4,33.1,26.6c13,5,27.8,8.2,42.5,7.8

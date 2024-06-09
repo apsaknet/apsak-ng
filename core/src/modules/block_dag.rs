@@ -387,7 +387,7 @@ impl ModuleT for BlockDag {
         // };
 
         let parent_levels = self.parent_levels.max(1);
-        let block_map : AHashMap<KaspaHash,(PlotPoint,bool)> = blocks.clone().into_iter().map(|(block, plot_point,vspc, _)|(block.header.hash,(plot_point,vspc))).collect();
+        let block_map : AHashMap<apsaKHash,(PlotPoint,bool)> = blocks.clone().into_iter().map(|(block, plot_point,vspc, _)|(block.header.hash,(plot_point,vspc))).collect();
         let new_blocks = self.runtime.block_dag_monitor_service().new_blocks().clone();
         let polygons = blocks.iter().map(|(block, point, current_vspc, block_settled)| {
             if !block_settled {

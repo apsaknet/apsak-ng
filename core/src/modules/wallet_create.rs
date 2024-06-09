@@ -1,7 +1,7 @@
 use crate::imports::*;
-use kaspa_wallet_core::{wallet::{AccountCreateArgs, PrvKeyDataCreateArgs, WalletCreateArgs}, encryption::EncryptionKind, api::{AccountsDiscoveryRequest, AccountsDiscoveryKind}};
+use apsak_wallet_core::{wallet::{AccountCreateArgs, PrvKeyDataCreateArgs, WalletCreateArgs}, encryption::EncryptionKind, api::{AccountsDiscoveryRequest, AccountsDiscoveryKind}};
 use slug::slugify;
-use kaspa_bip32::{WordCount, Mnemonic, Language};
+use apsak_bip32::{WordCount, Mnemonic, Language};
 use crate::utils::{secret_score, secret_score_to_text};
 
 #[derive(Default, Debug, Clone, Copy, Eq, PartialEq)]
@@ -236,7 +236,7 @@ impl ModuleT for WalletCreate {
                         ui.label("");
                         ui.checkbox(&mut this.context.import_legacy, i18n("I have a 12 word mnemonic legacy account"));
                         ui.label(i18n("Select this option if your wallet was created"));
-                        ui.label(i18n("using KDX or kaspanet.io web wallet"));
+                        ui.label(i18n("using KDX or apsaknet.io web wallet"));
                         ui.label(RichText::new("NOT SUPPORTED IN THIS BETA RELEASE").size(10.).color(warning_color()));
 
                         if !this.context.import_legacy {
@@ -416,7 +416,7 @@ impl ModuleT for WalletCreate {
                             your wallet, you may be accessing a fake wallet designed to steal \
                             your funds. If this occurs, stop using the wallet immediately, \
                             check the browser URL domain name and seek help on social networks \
-                            (Kaspa Discord or Telegram).");
+                            (apsaK Discord or Telegram).");
                         ui.label(" ");
                     })
                     .with_body(|this,ui| {

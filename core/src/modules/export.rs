@@ -31,7 +31,7 @@ impl ExportKind {
     pub fn info(&self) -> (&'static str,&'static str) {
         match self {
             Self::Mnemonic => ("Private Key Mnemonic","Private key mnemonic stored in this wallet"),
-            Self::Transportable => ("Transportable", "Encrypted hex encoded data easily importable into another instance of KaspaNG"),
+            Self::Transportable => ("Transportable", "Encrypted hex encoded data easily importable into another instance of apsaKNG"),
         }
     }
 }

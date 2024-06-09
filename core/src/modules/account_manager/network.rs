@@ -26,7 +26,7 @@ impl<'context> NetworkState<'context> {
                 );
                 ui.add_space(ICON_SPACING);
                 
-                ui.label(i18n("You are currently not connected to the Kaspa node."));
+                ui.label(i18n("You are currently not connected to the apsaK node."));
             } else if !core.state().is_synced() {
                 
                 ui.add_space(ICON_SPACING);
@@ -37,7 +37,7 @@ impl<'context> NetworkState<'context> {
                 );
                 ui.add_space(ICON_SPACING);
 
-                ui.label(i18n("The node is currently syncing with the Kaspa p2p network."));
+                ui.label(i18n("The node is currently syncing with the apsaK p2p network."));
                 ui.add_space(16.);
                 ui.label(i18n("Please wait for the node to sync or connect to a remote node."));
             }

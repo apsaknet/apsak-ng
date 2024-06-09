@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for Kaspa NG
+about: Suggest an idea for apsaK NG
 title: ''
 labels: ''
 assignees: ''

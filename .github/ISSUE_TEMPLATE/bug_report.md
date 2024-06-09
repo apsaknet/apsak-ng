@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve Kaspa NG
+about: Create a report to help improve apsaK NG
 title: ''
 labels: ''
 assignees: ''
@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Ubuntu 20.04]
- - Kaspa NG version: [e.g. 0.1.0]
+ - apsaK NG version: [e.g. 0.1.0]
 
 **Additional context**
 Add any other context about the problem here.

@@ -6,7 +6,7 @@
 )]
 
 use cfg_if::cfg_if;
-use kaspa_ng_core::app::{kaspa_ng_main, ApplicationContext};
+use apsak_ng_core::app::{apsak_ng_main, ApplicationContext};
 use workflow_log::*;
 
 cfg_if! {
@@ -14,10 +14,10 @@ cfg_if! {
 
         fn main() {
 
-            kaspa_alloc::init_allocator_with_default_settings();
+            apsak_alloc::init_allocator_with_default_settings();
 
             let body = async {
-                if let Err(err) = kaspa_ng_main(ApplicationContext::default()).await {
+                if let Err(err) = apsak_ng_main(ApplicationContext::default()).await {
                     log_error!("Error: {err}");
                 }
             };
@@ -37,7 +37,7 @@ cfg_if! {
         fn main() {
 
             wasm_bindgen_futures::spawn_local(async {
-                if let Err(err) = kaspa_ng_main(ApplicationContext::default()).await {
+                if let Err(err) = apsak_ng_main(ApplicationContext::default()).await {
                     log_error!("Error: {err}");
                 }
             });

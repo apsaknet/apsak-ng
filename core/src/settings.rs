@@ -1,8 +1,8 @@
 use crate::{imports::*, servers::random_public_server};
-use kaspa_metrics_core::Metric;
-use kaspa_utils::networking::ContextualNetAddress;
-use kaspa_wallet_core::storage::local::storage::Storage;
-use kaspa_wrpc_client::WrpcEncoding;
+use apsak_metrics_core::Metric;
+use apsak_utils::networking::ContextualNetAddress;
+use apsak_wallet_core::storage::local::storage::Storage;
+use apsak_wrpc_client::WrpcEncoding;
 use workflow_core::{runtime, task::spawn};
 
 const SETTINGS_REVISION: &str = "0.0.0";
@@ -11,7 +11,7 @@ cfg_if! {
     if #[cfg(not(target_arch = "wasm32"))] {
         #[derive(Default, Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
         #[serde(rename_all = "kebab-case")]
-        pub enum KaspadNodeKind {
+        pub enum    ApsakdNodeKind {
             Disable,
             Remote,
             IntegratedInProc,
@@ -20,22 +20,22 @@ cfg_if! {
             ExternalAsDaemon,
         }
 
-        const KASPAD_NODE_KINDS: [KaspadNodeKind; 5] = [
-            KaspadNodeKind::Disable,
-            KaspadNodeKind::Remote,
-            KaspadNodeKind::IntegratedInProc,
-            KaspadNodeKind::IntegratedAsDaemon,
-            KaspadNodeKind::ExternalAsDaemon,
+        const APSAKD_NODE_KINDS: [ApsakdNodeKind; 5] = [
+            ApsakdNodeKind::Disable,
+            ApsakdNodeKind::Remote,
+            ApsakdNodeKind::IntegratedInProc,
+            ApsakdNodeKind::IntegratedAsDaemon,
+            ApsakdNodeKind::ExternalAsDaemon,
         ];
 
-        impl std::fmt::Display for KaspadNodeKind {
+        impl std::fmt::Display for ApsakdNodeKind {
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 match self {
-                    KaspadNodeKind::Disable => write!(f, "{}", i18n("Disabled")),
-                    KaspadNodeKind::Remote => write!(f, "{}", i18n("Remote")),
-                    KaspadNodeKind::IntegratedInProc => write!(f, "{}", i18n("Integrated Node")),
-                    KaspadNodeKind::IntegratedAsDaemon => write!(f, "{}", i18n("Integrated Daemon")),
-                    KaspadNodeKind::ExternalAsDaemon => write!(f, "{}", i18n("External Daemon")),
+                    ApsakdNodeKind::Disable => write!(f, "{}", i18n("Disabled")),
+                    ApsakdNodeKind::Remote => write!(f, "{}", i18n("Remote")),
+                    ApsakdNodeKind::IntegratedInProc => write!(f, "{}", i18n("Integrated Node")),
+                    ApsakdNodeKind::IntegratedAsDaemon => write!(f, "{}", i18n("Integrated Daemon")),
+                    ApsakdNodeKind::ExternalAsDaemon => write!(f, "{}", i18n("External Daemon")),
                 }
             }
         }
@@ -43,68 +43,68 @@ cfg_if! {
     } else {
         #[derive(Default, Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
         #[serde(rename_all = "kebab-case")]
-        pub enum KaspadNodeKind {
+        pub enum ApsakdNodeKind {
             #[default]
             Disable,
             Remote,
         }
 
-        const KASPAD_NODE_KINDS: [KaspadNodeKind; 1] = [
-            KaspadNodeKind::Remote,
+        const APSAKD_NODE_KINDS: [ApsakdNodeKind; 1] = [
+            ApsakdNodeKind::Remote,
         ];
 
-        impl std::fmt::Display for KaspadNodeKind {
+        impl std::fmt::Display for ApsakdNodeKind {
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                 match self {
-                    KaspadNodeKind::Disable => write!(f, "Disable"),
-                    KaspadNodeKind::Remote => write!(f, "Remote"),
+                    ApsakdNodeKind::Disable => write!(f, "Disable"),
+                    ApsakdNodeKind::Remote => write!(f, "Remote"),
                 }
             }
         }
     }
 }
 
-impl KaspadNodeKind {
-    pub fn iter() -> impl Iterator<Item = &'static KaspadNodeKind> {
-        KASPAD_NODE_KINDS.iter()
+impl ApsakdNodeKind {
+    pub fn iter() -> impl Iterator<Item = &'static ApsakdNodeKind> {
+        APSAKD_NODE_KINDS.iter()
     }
 
     pub fn describe(&self) -> &str {
         match self {
-            KaspadNodeKind::Disable => i18n("Disables node connectivity (Offline Mode)."),
-            KaspadNodeKind::Remote => i18n("Connects to a Remote Rusty Kaspa Node via wRPC."),
+            ApsakdNodeKind::Disable => i18n("Disables node connectivity (Offline Mode)."),
+            ApsakdNodeKind::Remote => i18n("Connects to a Remote Rusty apsaK Node via wRPC."),
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedInProc => i18n("The node runs as a part of the Kaspa-NG application process. This reduces communication overhead (experimental)."),
+            ApsakdNodeKind::IntegratedInProc => i18n("The node runs as a part of the apsaK-NG application process. This reduces communication overhead (experimental)."),
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedAsDaemon => i18n("The node is spawned as a child daemon process (recommended)."),
+            ApsakdNodeKind::IntegratedAsDaemon => i18n("The node is spawned as a child daemon process (recommended)."),
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::ExternalAsDaemon => i18n("A binary at another location is spawned a child process (experimental, for development purposes only)."),
+            ApsakdNodeKind::ExternalAsDaemon => i18n("A binary at another location is spawned a child process (experimental, for development purposes only)."),
         }
     }
 
     pub fn is_config_capable(&self) -> bool {
         match self {
-            KaspadNodeKind::Disable => false,
-            KaspadNodeKind::Remote => false,
+            ApsakdNodeKind::Disable => false,
+            ApsakdNodeKind::Remote => false,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedInProc => true,
+            ApsakdNodeKind::IntegratedInProc => true,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedAsDaemon => true,
+            ApsakdNodeKind::IntegratedAsDaemon => true,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::ExternalAsDaemon => true,
+            ApsakdNodeKind::ExternalAsDaemon => true,
         }
     }
 
     pub fn is_local(&self) -> bool {
         match self {
-            KaspadNodeKind::Disable => false,
-            KaspadNodeKind::Remote => false,
+            ApsakdNodeKind::Disable => false,
+            ApsakdNodeKind::Remote => false,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedInProc => true,
+            ApsakdNodeKind::IntegratedInProc => true,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::IntegratedAsDaemon => true,
+            ApsakdNodeKind::IntegratedAsDaemon => true,
             #[cfg(not(target_arch = "wasm32"))]
-            KaspadNodeKind::ExternalAsDaemon => true,
+            ApsakdNodeKind::ExternalAsDaemon => true,
         }
     }
 }
@@ -157,7 +157,7 @@ impl Default for RpcConfig {
                 let url = "127.0.0.1";
             } else {
                 use workflow_dom::utils::*;
-                let url = window().location().hostname().expect("KaspadNodeKind: Unable to get hostname");
+                let url = window().location().hostname().expect("ApsakdNodeKind: Unable to get hostname");
             }
         }
         RpcConfig::Wrpc {
@@ -287,7 +287,7 @@ impl std::fmt::Display for NodeMemoryScale {
 impl NodeMemoryScale {
     pub fn describe(&self) -> &str {
         match self {
-            NodeMemoryScale::Default => i18n("Managed by the Rusty Kaspa daemon"),
+            NodeMemoryScale::Default => i18n("Managed by the Rusty apsaK daemon"),
             NodeMemoryScale::Conservative => i18n("Use 50%-75% of available system memory"),
             NodeMemoryScale::Performance => i18n("Use all available system memory"),
         }
@@ -367,14 +367,14 @@ pub struct NodeSettings {
     pub memory_scale: NodeMemoryScale,
 
     pub network: Network,
-    pub node_kind: KaspadNodeKind,
-    pub kaspad_daemon_binary: String,
-    pub kaspad_daemon_args: String,
-    pub kaspad_daemon_args_enable: bool,
+    pub node_kind: ApsakdNodeKind,
+    pub apsakd_daemon_binary: String,
+    pub apsakd_daemon_args: String,
+    pub apsakd_daemon_args_enable: bool,
     #[serde(default)]
-    pub kaspad_daemon_storage_folder_enable: bool,
+    pub apsakd_daemon_storage_folder_enable: bool,
     #[serde(default)]
-    pub kaspad_daemon_storage_folder: String,
+    pub apsakd_daemon_storage_folder: String,
 }
 
 impl Default for NodeSettings {
@@ -392,12 +392,12 @@ impl Default for NodeSettings {
             enable_upnp: true,
             memory_scale: NodeMemoryScale::default(),
             network: Network::default(),
-            node_kind: KaspadNodeKind::default(),
-            kaspad_daemon_binary: String::default(),
-            kaspad_daemon_args: String::default(),
-            kaspad_daemon_args_enable: false,
-            kaspad_daemon_storage_folder_enable: false,
-            kaspad_daemon_storage_folder: String::default(),
+            node_kind: ApsakdNodeKind::default(),
+            apsakd_daemon_binary: String::default(),
+            apsakd_daemon_args: String::default(),
+            apsakd_daemon_args_enable: false,
+            apsakd_daemon_storage_folder_enable: false,
+            apsakd_daemon_storage_folder: String::default(),
         }
     }
 }
@@ -417,8 +417,8 @@ impl NodeSettings {
                     || (other.connection_config_kind == NodeConnectionConfigKind::PublicServerCustom && !self.public_servers.compare(&other.public_servers))
                 {
                     Some(true)
-                } else if self.kaspad_daemon_storage_folder_enable != other.kaspad_daemon_storage_folder_enable
-                    || other.kaspad_daemon_storage_folder_enable && (self.kaspad_daemon_storage_folder != other.kaspad_daemon_storage_folder)
+                } else if self.apsakd_daemon_storage_folder_enable != other.apsakd_daemon_storage_folder_enable
+                    || other.apsakd_daemon_storage_folder_enable && (self.apsakd_daemon_storage_folder != other.apsakd_daemon_storage_folder)
                 {
                     Some(true)
                 } else if self.enable_grpc != other.enable_grpc
@@ -429,13 +429,13 @@ impl NodeSettings {
                     || self.wrpc_json_network_interface != other.wrpc_json_network_interface
                     || self.enable_upnp != other.enable_upnp
                 {
-                    Some(self.node_kind != KaspadNodeKind::IntegratedInProc)
-                } else if self.kaspad_daemon_args != other.kaspad_daemon_args
-                    || self.kaspad_daemon_args_enable != other.kaspad_daemon_args_enable
+                    Some(self.node_kind != ApsakdNodeKind::IntegratedInProc)
+                } else if self.apsakd_daemon_args != other.apsakd_daemon_args
+                    || self.apsakd_daemon_args_enable != other.apsakd_daemon_args_enable
                 {
                     Some(self.node_kind.is_config_capable())
-                } else if self.kaspad_daemon_binary != other.kaspad_daemon_binary {
-                    Some(self.node_kind == KaspadNodeKind::ExternalAsDaemon)
+                } else if self.apsakd_daemon_binary != other.apsakd_daemon_binary {
+                    Some(self.node_kind == ApsakdNodeKind::ExternalAsDaemon)
                 } else {
                     None
                 }
@@ -625,7 +625,7 @@ impl Default for Settings {
 impl Settings {}
 
 fn storage() -> Result<Storage> {
-    Ok(Storage::try_new("kaspa-ng.settings")?)
+    Ok(Storage::try_new("apsak-ng.settings")?)
 }
 
 impl Settings {

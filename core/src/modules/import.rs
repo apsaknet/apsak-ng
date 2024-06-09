@@ -1,5 +1,5 @@
 use crate::imports::*;
-use kaspa_bip32::Language;
+use apsak_bip32::Language;
 
 #[derive(Clone)]
 pub enum State {

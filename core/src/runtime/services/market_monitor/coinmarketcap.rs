@@ -4,12 +4,12 @@ use workflow_http::get_json;
 
 #[derive(Default, Serialize, Deserialize)]
 struct CoinGeckoSimplePrice {
-    kaspa: Option<AHashMap<String, f64>>,
+    apsak: Option<AHashMap<String, f64>>,
 }
 
 impl CoinGeckoSimplePrice {
     pub async fn get(currencies: &[&str]) -> Result<Self> {
-        let ids = "kaspa";
+        let ids = "apsak";
         let currencies = currencies
             .iter()
             .map(|currency| currency.to_lowercase())
@@ -23,8 +23,8 @@ impl CoinGeckoSimplePrice {
 impl From<CoinGeckoSimplePrice> for MarketDataMap {
     fn from(data: CoinGeckoSimplePrice) -> Self {
         let mut prices = AHashMap::new();
-        if let Some(kaspa) = data.kaspa {
-            prices = group_by_currency_prefix(&kaspa);
+        if let Some(apsak) = data.apsak {
+            prices = group_by_currency_prefix(&apsak);
         }
         prices
     }

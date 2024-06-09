@@ -64,7 +64,7 @@ impl Storage {
             .lock()
             .unwrap()
             .clone()
-            .or_else(|| Some(kaspad_lib::daemon::get_app_dir()))
+            .or_else(|| Some(apsakd_lib::daemon::get_app_dir()))
             .unwrap()
     }
 
@@ -79,8 +79,8 @@ impl Storage {
             }
         }
 
-        let rusty_kaspa_app_dir = self.storage_root();
-        if !rusty_kaspa_app_dir.exists() {
+        let rusty_apsak_app_dir = self.storage_root();
+        if !rusty_apsak_app_dir.exists() {
             return;
         }
 
@@ -90,14 +90,14 @@ impl Storage {
                 task::sleep(delay).await;
             }
 
-            let paths = std::fs::read_dir(rusty_kaspa_app_dir).unwrap();
+            let paths = std::fs::read_dir(rusty_apsak_app_dir).unwrap();
             for path in paths {
                 let path = path?.path();
                 if std::fs::metadata(&path)?.is_dir() {
                     if let Some(folder) = path.clone().file_name().and_then(|path| path.to_str()) {
                         if !folder.starts_with('.') {
                             if let Some(network) = folder
-                                .strip_prefix("kaspa-")
+                                .strip_prefix("apsak-")
                                 .and_then(|folder| folder.parse::<Network>().ok())
                             {
                                 let mut folder_size = 0;
@@ -122,7 +122,7 @@ impl Storage {
     }
 
     fn update_folder_size(&self, network: Network, folder_size: u64, path: PathBuf) {
-        use kaspa_metrics_core::data::as_data_size;
+        use apsak_metrics_core::data::as_data_size;
         let folder_size_string = as_data_size(folder_size as f64, true);
 
         let mut folders = self.folders.lock().unwrap();
@@ -246,7 +246,7 @@ impl Storage {
 
                                 if *confirm_deletion {
                                     ui.add_sized(vec2(260.,4.), Separator::default());
-                                    ui.label(i18n("This action will erase Kaspa database and logs"));
+                                    ui.label(i18n("This action will erase apsaK database and logs"));
                                     ui.label("");
                                     ui.colored_label(theme_color().alert_color, i18n("Please Confirm Deletion"));
                                     if let Some(response) = ui.confirm_medium_apply_cancel(Align::Min) {

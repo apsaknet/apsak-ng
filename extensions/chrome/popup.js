@@ -5,8 +5,8 @@
 //     });
 // }
 
-// import init from '/kaspa-egui-57c7a8dd13e092be.js';
-// init('/kaspa-egui-57c7a8dd13e092be_bg.wasm');
+// import init from '/apsak-egui-57c7a8dd13e092be.js';
+// init('/apsak-egui-57c7a8dd13e092be_bg.wasm');
 
 // -----------
 
@@ -29,15 +29,15 @@
 //     }
 // })
 
-// import init from '/kaspa-ng.js';
-// let kaspa_ng = init('/kaspa-egui_bg.wasm');
-import init from '/kaspa-ng.js';
+// import init from '/apsak-ng.js';
+// let apsak_ng = init('/apsak-egui_bg.wasm');
+import init from '/apsak-ng.js';
 (async () => {
-    let kaspa_ng = await init('/kaspa-ng_bg.wasm');
+    let apsak_ng = await init('/apsak-ng_bg.wasm');
 
-    // const wasm = await kaspa.default('./kaspa-wallet/kaspa-wallet_bg.wasm');
-    await kaspa_ng.kaspa_ng_main();
+    // const wasm = await apsak.default('./apsak-wallet/apsak-wallet_bg.wasm');
+    await apsak_ng.apsak_ng_main();
 })();
 
 
-// wasm_bindgen('/kaspa-ng_bg.wasm');
+// wasm_bindgen('/apsak-ng_bg.wasm');

@@ -3,18 +3,18 @@ use crate::interop::Adaptor;
 use crate::result::Result;
 use crate::servers::parse_default_servers;
 use cfg_if::cfg_if;
-use kaspa_ng_core::runtime;
-use kaspa_ng_core::settings::Settings;
-use kaspa_wallet_core::api::WalletApi;
+use apsak_ng_core::runtime;
+use apsak_ng_core::settings::Settings;
+use apsak_wallet_core::api::WalletApi;
 use std::sync::Arc;
 use workflow_i18n::*;
 use workflow_log::*;
 
-// pub const KASPA_NG_ICON_SVG: &[u8] = include_bytes!("../../resources/images/kaspa.svg");
-pub const KASPA_NG_ICON_SVG: &[u8] = include_bytes!("../resources/images/kaspa-node-dark.svg");
-pub const KASPA_NG_ICON_TRANSPARENT_SVG: &[u8] =
-    include_bytes!("../resources/images/kaspa-node-transparent.svg");
-pub const KASPA_NG_LOGO_SVG: &[u8] = include_bytes!("../resources/images/kaspa-ng.svg");
+// pub const APSAK_NG_ICON_SVG: &[u8] = include_bytes!("../../resources/images/apsak.svg");
+pub const APSAK_NG_ICON_SVG: &[u8] = include_bytes!("../resources/images/apsak-node-dark.svg");
+pub const APSAK_NG_ICON_TRANSPARENT_SVG: &[u8] =
+    include_bytes!("../resources/images/apsak-node-transparent.svg");
+pub const APSAK_NG_LOGO_SVG: &[u8] = include_bytes!("../resources/images/apsak-ng.svg");
 pub const I18N_EMBEDDED: &str = include_str!("../resources/i18n/i18n.json");
 pub const BUILD_TIMESTAMP: &str = env!("VERGEN_BUILD_TIMESTAMP");
 pub const GIT_DESCRIBE: &str = env!("VERGEN_GIT_DESCRIBE");
@@ -52,14 +52,14 @@ impl ApplicationContext {
 
 cfg_if! {
     if #[cfg(not(target_arch = "wasm32"))] {
-        use kaspad_lib::daemon::{
+        use apsakd_lib::daemon::{
             create_core,
             // DESIRED_DAEMON_SOFT_FD_LIMIT,
             // MINIMUM_DAEMON_SOFT_FD_LIMIT
         };
-        use kaspad_lib::args::Args as NodeArgs;
-        use kaspa_utils::fd_budget;
-        use kaspa_core::signals::Signals;
+        use apsakd_lib::args::Args as NodeArgs;
+        use apsak_utils::fd_budget;
+        use apsak_core::signals::Signals;
         use clap::ArgAction;
         use crate::utils::*;
         use runtime::panic::*;
@@ -82,7 +82,7 @@ cfg_if! {
                 reset_settings : bool,
                 disable : bool,
             },
-            Kaspad { args : Box<NodeArgs> },
+            Apsakd { args : Box<NodeArgs> },
         }
 
         fn parse_args() -> Args {
@@ -91,10 +91,10 @@ cfg_if! {
             use std::env::{args,var};
             use std::iter::once;
 
-            if args().any(|arg| arg == "--daemon") || var("KASPA_NG_DAEMON").is_ok() {
-                let args = once("kaspad".to_string()).chain(args().skip(1).filter(|arg| arg != "--daemon"));//.collect::<Vec<String>>();
+            if args().any(|arg| arg == "--daemon") || var("APSAK_NG_DAEMON").is_ok() {
+                let args = once("apsakd".to_string()).chain(args().skip(1).filter(|arg| arg != "--daemon"));//.collect::<Vec<String>>();
                 match NodeArgs::parse(args) {
-                    Ok(args) => Args::Kaspad { args : Box::new(args) },
+                    Ok(args) => Args::Apsakd { args : Box::new(args) },
                     Err(err) => {
                         println!("{err}");
                         std::process::exit(1);
@@ -102,22 +102,22 @@ cfg_if! {
                 }
             } else {
 
-                let cmd = Command::new("kaspa-ng")
+                let cmd = Command::new("apsak-ng")
 
-                    .about(format!("kaspa-ng v{VERSION}-{GIT_DESCRIBE} (rusty-kaspa v{})", kaspa_wallet_core::version()))
+                    .about(format!("apsak-ng v{VERSION}-{GIT_DESCRIBE} (rusty-apsak v{})", apsak_wallet_core::version()))
                     .arg(arg!(--version "Display software version"))
                     .arg(arg!(--disable "Disable node services when starting"))
-                    .arg(arg!(--daemon "Run as Rusty Kaspa p2p daemon"))
-                    .arg(arg!(--cli "Run as Rusty Kaspa Cli Wallet"))
+                    .arg(arg!(--daemon "Run as Rusty apsaK p2p daemon"))
+                    .arg(arg!(--cli "Run as Rusty apsaK Cli Wallet"))
                     .arg(
                         Arg::new("reset-settings")
                         .long("reset-settings")
                         .action(ArgAction::SetTrue)
-                        .help("Reset kaspa-ng settings")
+                        .help("Reset apsak-ng settings")
                     )
                     .subcommand(
                         Command::new("i18n").hide(true)
-                        .about("kaspa-ng i18n user interface translation")
+                        .about("apsak-ng i18n user interface translation")
                         .subcommand(
                             Command::new("import")
                                 .about("import JSON files suffixed with language codes (*_en.json, *_de.json, etc.)")
@@ -161,8 +161,8 @@ cfg_if! {
             }
         }
 
-        // pub async fn kaspa_ng_main(wallet_api : Option<Arc<dyn WalletApi>>, application_events : Option<ApplicationEventsChannel>, _adaptor: Option<Arc<Adaptor>>) -> Result<()> {
-        pub async fn kaspa_ng_main(application_context : ApplicationContext) -> Result<()> {
+        // pub async fn apsak_ng_main(wallet_api : Option<Arc<dyn WalletApi>>, application_events : Option<ApplicationEventsChannel>, _adaptor: Option<Arc<Adaptor>>) -> Result<()> {
+        pub async fn apsak_ng_main(application_context : ApplicationContext) -> Result<()> {
             use std::sync::Mutex;
 
             let ApplicationContext { wallet_api, application_events, adaptor: _ } = application_context;
@@ -172,7 +172,7 @@ cfg_if! {
                     if limit < MINIMUM_DAEMON_SOFT_FD_LIMIT {
                         println!();
                         println!("| Current OS file descriptor limit (soft FD limit) is set to {limit}");
-                        println!("| The kaspad node requires a setting of at least {DESIRED_DAEMON_SOFT_FD_LIMIT} to operate properly.");
+                        println!("| The apsakd node requires a setting of at least {DESIRED_DAEMON_SOFT_FD_LIMIT} to operate properly.");
                         println!("| Please increase the limits using the following command:");
                         println!("| ulimit -n {DESIRED_DAEMON_SOFT_FD_LIMIT}");
                         println!();
@@ -181,7 +181,7 @@ cfg_if! {
                 Err(err) => {
                     println!();
                     println!("| Unable to initialize the necessary OS file descriptor limit (soft FD limit) to: {}", err);
-                    println!("| The kaspad node requires a setting of at least {DESIRED_DAEMON_SOFT_FD_LIMIT} to operate properly.");
+                    println!("| The apsakd node requires a setting of at least {DESIRED_DAEMON_SOFT_FD_LIMIT} to operate properly.");
                     println!();
                 }
             }
@@ -189,14 +189,14 @@ cfg_if! {
 
             match parse_args() {
                 Args::Cli => {
-                    use kaspa_cli_lib::*;
+                    use apsak_cli_lib::*;
                     // cli instantiates a custom panic handler
-                    let result = kaspa_cli(TerminalOptions::new().with_prompt("$ "), None).await;
+                    let result = apsak_cli(TerminalOptions::new().with_prompt("$ "), None).await;
                     if let Err(err) = result {
                         println!("{err}");
                     }
                 }
-                Args::Kaspad{ args } => {
+                Args::Apsakd{ args } => {
                     init_ungraceful_panic_handler();
                     let fd_total_budget = fd_budget::limit() - args.rpc_max_clients as i32 - args.inbound_limit as i32 - args.outbound_target as i32;
                     let (core, _) = create_core(*args, fd_total_budget);
@@ -216,7 +216,7 @@ cfg_if! {
 
                     workflow_log::set_colors_enabled(true);
 
-                    println!("kaspa-ng v{VERSION}-{GIT_DESCRIBE} (rusty-kaspa v{})", kaspa_wallet_core::version());
+                    println!("apsak-ng v{VERSION}-{GIT_DESCRIBE} (rusty-apsak v{})", apsak_wallet_core::version());
 
                     // Log to stderr (if you run with `RUST_LOG=debug`).
                     env_logger::init();
@@ -226,7 +226,7 @@ cfg_if! {
                     parse_default_servers();
 
                     let mut settings = if reset_settings {
-                        println!("Resetting kaspa-ng settings on user request...");
+                        println!("Resetting apsak-ng settings on user request...");
                         Settings::default().store_sync()?.clone()
                     } else {
                         Settings::load().await.unwrap_or_else(|err| {
@@ -251,7 +251,7 @@ cfg_if! {
                         .try_init()?;
 
                     if disable {
-                        settings.node.node_kind = kaspa_ng_core::settings::KaspadNodeKind::Disable;
+                        settings.node.node_kind = apsak_ng_core::settings::ApsakdNodeKind::Disable;
                     }
 
                     let runtime: Arc<Mutex<Option<runtime::Runtime>>> = Arc::new(Mutex::new(None));
@@ -261,10 +261,10 @@ cfg_if! {
 
                     let mut viewport = egui::ViewportBuilder::default()
                         .with_resizable(true)
-                        .with_title(i18n("Kaspa NG"))
+                        .with_title(i18n("apsaK NG"))
                         .with_min_inner_size([400.0,320.0])
                         .with_inner_size([1000.0,600.0])
-                        .with_icon(svg_to_icon_data(KASPA_NG_ICON_SVG, FitTo::Size(256,256)));
+                        .with_icon(svg_to_icon_data(APSAK_NG_ICON_SVG, FitTo::Size(256,256)));
 
                     if window_frame {
                         viewport = viewport
@@ -281,7 +281,7 @@ cfg_if! {
                     // let application_events = ApplicationEventsChannel::unbounded();
 
                     eframe::run_native(
-                        "Kaspa NG",
+                        "apsaK NG",
                         native_options,
                         Box::new(move |cc| {
                             let runtime = runtime::Runtime::new(&cc.egui_ctx, &settings, wallet_api, application_events, None);
@@ -289,7 +289,7 @@ cfg_if! {
                             runtime::signals::Signals::bind(&runtime);
                             runtime.start();
 
-                            Box::new(kaspa_ng_core::Core::new(cc, runtime, settings, window_frame))
+                            Box::new(apsak_ng_core::Core::new(cc, runtime, settings, window_frame))
                         }),
                     )?;
 
@@ -306,8 +306,8 @@ cfg_if! {
         // use crate::result::Result;
         // use crate::adaptor::Adaptor;
 
-        // pub async fn kaspa_ng_main(wallet_api : Option<Arc<dyn WalletApi>>, application_events : Option<ApplicationEventsChannel>, adaptor: Option<Arc<Adaptor>>) -> Result<()> {
-        pub async fn kaspa_ng_main(application_context : ApplicationContext) -> Result<()> {
+        // pub async fn apsak_ng_main(wallet_api : Option<Arc<dyn WalletApi>>, application_events : Option<ApplicationEventsChannel>, adaptor: Option<Arc<Adaptor>>) -> Result<()> {
+        pub async fn apsak_ng_main(application_context : ApplicationContext) -> Result<()> {
             use workflow_dom::utils::document;
 
             let ApplicationContext { wallet_api, application_events, adaptor } = application_context;
@@ -329,7 +329,7 @@ cfg_if! {
             eframe::WebLogger::init(log::LevelFilter::Debug).ok();
             let web_options = eframe::WebOptions::default();
 
-            kaspa_core::log::set_log_level(kaspa_core::log::LevelFilter::Info);
+            apsak_core::log::set_log_level(apsak_core::log::LevelFilter::Info);
 
             parse_default_servers();
 
@@ -344,7 +344,7 @@ cfg_if! {
 
             // wasm_bindgen_futures::spawn_local(async {
             use workflow_log::*;
-            log_info!("Welcome to Kaspa NG! Have a great day!");
+            log_info!("Welcome to apsaK NG! Have a great day!");
 
             if let Some(element) = document().get_element_by_id("loading") {
                 element.remove();
@@ -352,13 +352,13 @@ cfg_if! {
 
             eframe::WebRunner::new()
                 .start(
-                    "kaspa-ng",
+                    "apsak-ng",
                     web_options,
                     Box::new(move |cc| {
 
                         // wallet_api.ping()
 
-                        // let adaptor = kaspa_ng_core::adaptor::Adaptor::new(runtime.clone());
+                        // let adaptor = apsak_ng_core::adaptor::Adaptor::new(runtime.clone());
                         // let window = web_sys::window().expect("no global `window` exists");
                         // js_sys::Reflect::set(
                         //     &window,
@@ -371,7 +371,7 @@ cfg_if! {
 
 
 
-                        Box::new(kaspa_ng_core::Core::new(cc, runtime, settings, false))
+                        Box::new(apsak_ng_core::Core::new(cc, runtime, settings, false))
                     }),
                 )
                 .await
@@ -418,7 +418,7 @@ cfg_if! {
                     } else {
                         std::env::current_dir()?
                     };
-                    target_folder.push("kaspa-ng_en.json");
+                    target_folder.push("apsak-ng_en.json");
                     println!("exporting default language to: '{}'", target_folder.display());
                     i18n::export_default_language(move |json_data: &str| {
                         Ok(fs::write(&target_folder, json_data)?)

@@ -68,7 +68,7 @@ impl<'core> Menu<'core> {
 
         // ui.image(source)
         // ui.add(
-        //     Image::new(ImageSource::Bytes { uri : Cow::Borrowed("bytes://logo-transparent.svg"), bytes : Bytes::Static(crate::app::KASPA_NG_ICON_TRANSPARENT_SVG)})
+        //     Image::new(ImageSource::Bytes { uri : Cow::Borrowed("bytes://logo-transparent.svg"), bytes : Bytes::Static(crate::app::APSAK_NG_ICON_TRANSPARENT_SVG)})
 
         //     // egui::Image::new(egui::include_image!("../assets/ferris.png"))
         //         // .max_height(32.0)
@@ -253,7 +253,7 @@ impl<'core> Menu<'core> {
         ui.add(
             Image::new(ImageSource::Bytes {
                 uri: Cow::Borrowed("bytes://logo-transparent.svg"),
-                bytes: Bytes::Static(crate::app::KASPA_NG_ICON_TRANSPARENT_SVG),
+                bytes: Bytes::Static(crate::app::APSAK_NG_ICON_TRANSPARENT_SVG),
             })
             .fit_to_exact_size(Vec2::splat(device.top_icon_size()))
             .maintain_aspect_ratio(true)
@@ -285,7 +285,7 @@ impl<'core> Menu<'core> {
                         }
 
                         if self.core.device().single_pane() {
-                            ui.menu_button("Kaspa NG", |ui| {
+                            ui.menu_button("apsaK NG", |ui| {
                                 self.render_desktop_menu(ui);
                             });
                         } else {

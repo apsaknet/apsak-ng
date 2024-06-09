@@ -54,38 +54,38 @@ jobs:
         if: runner.os == 'Windows'
         shell: bash
         run: |
-          cargo build --bin kaspa-ng --release
-          mkdir kaspa-ng-${{ github.event.release.tag_name }}-windows-x64 || true
-          cp target/release/kaspa-ng.exe kaspa-ng-${{ github.event.release.tag_name }}-windows-x64/
-          archive="kaspa-ng-${{ github.event.release.tag_name }}-windows-x64/kaspa-ng-${{ github.event.release.tag_name }}-windows-x64.zip"
-          asset_name="kaspa-ng-${{ github.event.release.tag_name }}-windows-x64.zip"
-          powershell "Compress-Archive kaspa-ng-${{ github.event.release.tag_name }}-windows-x64/* \"${archive}\""
+          cargo build --bin apsak-ng --release
+          mkdir apsak-ng-${{ github.event.release.tag_name }}-windows-x64 || true
+          cp target/release/apsak-ng.exe apsak-ng-${{ github.event.release.tag_name }}-windows-x64/
+          archive="apsak-ng-${{ github.event.release.tag_name }}-windows-x64/apsak-ng-${{ github.event.release.tag_name }}-windows-x64.zip"
+          asset_name="apsak-ng-${{ github.event.release.tag_name }}-windows-x64.zip"
+          powershell "Compress-Archive apsak-ng-${{ github.event.release.tag_name }}-windows-x64/* \"${archive}\""
           echo "asset_path=${archive}" >> $GITHUB_ENV
           echo "asset_name=${asset_name}" >> $GITHUB_ENV
 
       - name: Build on MacOS
         if: runner.os == 'macOS'
         run: |
-          cargo build --bin kaspa-ng --release
-          mkdir kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64 || true
-          cp target/release/kaspa-ng kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64/
-          archive="kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64/kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64.zip"
-          asset_name="kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64.zip"
-          zip -r "${archive}" ./kaspa-ng-${{ github.event.release.tag_name }}-macos-arm64/*
+          cargo build --bin apsak-ng --release
+          mkdir apsak-ng-${{ github.event.release.tag_name }}-macos-arm64 || true
+          cp target/release/apsak-ng apsak-ng-${{ github.event.release.tag_name }}-macos-arm64/
+          archive="apsak-ng-${{ github.event.release.tag_name }}-macos-arm64/apsak-ng-${{ github.event.release.tag_name }}-macos-arm64.zip"
+          asset_name="apsak-ng-${{ github.event.release.tag_name }}-macos-arm64.zip"
+          zip -r "${archive}" ./apsak-ng-${{ github.event.release.tag_name }}-macos-arm64/*
           echo "asset_path=${archive}" >> $GITHUB_ENV
           echo "asset_name=${asset_name}" >> $GITHUB_ENV
 
       - name: Build on Linux
         if: runner.os == 'Linux'
         run: |
-          cargo build --bin kaspa-ng --release
+          cargo build --bin apsak-ng --release
           mkdir -p .debpkg/usr/bin
-          cp target/release/kaspa-ng .debpkg/usr/bin/
-          mkdir kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64 || true
-          cp target/release/kaspa-ng kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/
-          archive="kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64.zip"
-          asset_name="kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64.zip"
-          zip -r "${archive}" ./kaspa-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/*
+          cp target/release/apsak-ng .debpkg/usr/bin/
+          mkdir apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64 || true
+          cp target/release/apsak-ng apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/
+          archive="apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64.zip"
+          asset_name="apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64.zip"
+          zip -r "${archive}" ./apsak-ng-${{ github.event.release.tag_name }}-linux-gnu-amd64/*
           echo "archive=${archive}" >> $GITHUB_ENV
           echo "asset_name=${asset_name}" >> $GITHUB_ENV
 
@@ -94,13 +94,13 @@ jobs:
         id: package_debian
         uses: jiro4989/build-deb-action@v3
         with:
-          package: kaspa-ng
+          package: apsak-ng
           package_root: .debpkg
           maintainer: ASPECTRON
           version: ${{ github.ref }} # refs/tags/v*.*.*
           arch: 'amd64'
           depends: 'libglib2.0-0, libatk1.0-0, libgtk-3-0'
-          desc: 'Kaspa NG desktop p2p node and wallet'
+          desc: 'apsaK NG desktop p2p node and wallet'
 
       - name: Upload release asset
         if: runner.os == 'Windows'

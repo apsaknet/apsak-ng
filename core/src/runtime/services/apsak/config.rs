@@ -2,20 +2,20 @@ use crate::app::{GIT_DESCRIBE, VERSION};
 use crate::imports::*;
 use crate::settings::NodeMemoryScale;
 use crate::utils::Arglist;
-use kaspa_core::kaspad_env;
+use apsak_core::apsakd_env;
 #[cfg(not(target_arch = "wasm32"))]
-pub use kaspad_lib::args::Args;
+pub use apsakd_lib::args::Args;
 
 fn user_agent_comment() -> String {
-    format!("kaspa-ng:{}-{}", VERSION, GIT_DESCRIBE)
+    format!("apsak-ng:{}-{}", VERSION, GIT_DESCRIBE)
 }
 
 #[allow(dead_code)]
 fn user_agent() -> String {
     format!(
-        "/{}:{}/kaspa-ng:{}-{}/",
-        kaspad_env::name(),
-        kaspad_env::version(),
+        "/{}:{}/apsak-ng:{}-{}/",
+        apsakd_env::name(),
+        apsakd_env::version(),
         VERSION,
         GIT_DESCRIBE
     )
@@ -27,10 +27,10 @@ pub struct Config {
     enable_upnp: bool,
     enable_grpc: bool,
     grpc_network_interface: NetworkInterfaceConfig,
-    kaspad_daemon_args_enable: bool,
-    kaspad_daemon_args: String,
-    kaspad_daemon_storage_folder_enable: bool,
-    kaspad_daemon_storage_folder: String,
+    apsakd_daemon_args_enable: bool,
+    apsakd_daemon_args: String,
+    apsakd_daemon_storage_folder_enable: bool,
+    apsakd_daemon_storage_folder: String,
     memory_scale: NodeMemoryScale,
 }
 
@@ -41,10 +41,10 @@ impl From<NodeSettings> for Config {
             enable_upnp: node_settings.enable_upnp,
             enable_grpc: node_settings.enable_grpc,
             grpc_network_interface: node_settings.grpc_network_interface,
-            kaspad_daemon_args_enable: node_settings.kaspad_daemon_args_enable,
-            kaspad_daemon_args: node_settings.kaspad_daemon_args,
-            kaspad_daemon_storage_folder_enable: node_settings.kaspad_daemon_storage_folder_enable,
-            kaspad_daemon_storage_folder: node_settings.kaspad_daemon_storage_folder,
+            apsakd_daemon_args_enable: node_settings.apsakd_daemon_args_enable,
+            apsakd_daemon_args: node_settings.apsakd_daemon_args,
+            apsakd_daemon_storage_folder_enable: node_settings.apsakd_daemon_storage_folder_enable,
+            apsakd_daemon_storage_folder: node_settings.apsakd_daemon_storage_folder,
             memory_scale: node_settings.memory_scale,
         }
     }
@@ -129,12 +129,12 @@ cfg_if! {
 
                 args.push(format!("--uacomment={}", user_agent_comment()));
 
-                if config.kaspad_daemon_storage_folder_enable && !config.kaspad_daemon_storage_folder.is_empty() && !(config.kaspad_daemon_args_enable && config.kaspad_daemon_args.contains("--appdir")) {
-                    args.push(format!("--appdir={}", config.kaspad_daemon_storage_folder));
+                if config.apsakd_daemon_storage_folder_enable && !config.apsakd_daemon_storage_folder.is_empty() && !(config.apsakd_daemon_args_enable && config.apsakd_daemon_args.contains("--appdir")) {
+                    args.push(format!("--appdir={}", config.apsakd_daemon_storage_folder));
                 }
 
-                if config.kaspad_daemon_args_enable {
-                    config.kaspad_daemon_args.trim().split(' ').filter(|arg|!arg.trim().is_empty()).for_each(|arg| {
+                if config.apsakd_daemon_args_enable {
+                    config.apsakd_daemon_args.trim().split(' ').filter(|arg|!arg.trim().is_empty()).for_each(|arg| {
                         args.push(arg);
                     });
                 }

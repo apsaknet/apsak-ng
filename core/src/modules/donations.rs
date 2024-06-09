@@ -3,26 +3,26 @@ use egui_phosphor::light::CLIPBOARD_TEXT;
 use std::{borrow::Cow, collections::hash_map::Entry};
 
 pub struct Donations {
-    qr_kaspa_ng_fund : HashMap<String, (String,load::Bytes)>,
+    qr_apsak_ng_fund : HashMap<String, (String,load::Bytes)>,
 }
 
 impl Donations {
 
-    pub const ADDRESS_KASPA_NG_FUND: &'static str = "kaspa:qq2efzv0j7vt9gz9gfq44e6ggemjvvcuewhzqpm4ekf4fs5smruvs3c8ur9rp";
+    pub const ADDRESS_APSAK_NG_FUND: &'static str = "apsak:qrwsj38ulfq30dwze7q5rvwy8rfa237ct9eegtexah3wdjgd7g5ggmw7ut4tu";
 
     pub fn new(_runtime: Runtime) -> Self {
         Self { 
-            qr_kaspa_ng_fund : Default::default(),
+            qr_apsak_ng_fund : Default::default(),
         }
     }
 
-    fn qr_kaspa_ng_fund(&mut self) -> (String,load::Bytes) {
+    fn qr_apsak_ng_fund(&mut self) -> (String,load::Bytes) {
 
-        let (uri,qr) = match self.qr_kaspa_ng_fund.entry(theme_color().name.clone()) {
+        let (uri,qr) = match self.qr_apsak_ng_fund.entry(theme_color().name.clone()) {
             Entry::Occupied(entry) => entry.into_mut(),
             Entry::Vacant(entry) => {
-                let uri = format!("bytes://{}-{}.svg", Self::ADDRESS_KASPA_NG_FUND, theme_color().name);
-                let qr = render_qrcode(Self::ADDRESS_KASPA_NG_FUND, 128, 128);
+                let uri = format!("bytes://{}-{}.svg", Self::ADDRESS_APSAK_NG_FUND, theme_color().name);
+                let qr = render_qrcode(Self::ADDRESS_APSAK_NG_FUND, 128, 128);
                 entry.insert((uri, qr.as_bytes().to_vec().into()))
             },
         };
@@ -39,7 +39,7 @@ impl Donations {
         
         ui.label(" ");
 
-        let response = ui.add(Label::new(format!("{} {CLIPBOARD_TEXT}", format_address_string(Self::ADDRESS_KASPA_NG_FUND, Some(12)))).sense(Sense::click()))
+        let response = ui.add(Label::new(format!("{} {CLIPBOARD_TEXT}", format_address_string(Self::ADDRESS_APSAK_NG_FUND, Some(12)))).sense(Sense::click()))
         .on_hover_ui_at_pointer(|ui|{
             ui.vertical(|ui|{
                 ui.label(i18n("Click to copy the donation address to clipboard"));
@@ -47,7 +47,7 @@ impl Donations {
         });
 
         if response.clicked() {
-            ui.output_mut(|o| Self::ADDRESS_KASPA_NG_FUND.clone_into(&mut o.copied_text));
+            ui.output_mut(|o| Self::ADDRESS_APSAK_NG_FUND.clone_into(&mut o.copied_text));
             runtime().notify_clipboard(i18n("Copied to clipboard"));
         }
 
@@ -73,7 +73,7 @@ impl ModuleT for Donations {
         let back = Rc::new(RefCell::new(false));
 
         Panel::new(self)
-            .with_caption("Supporting Kaspa NG")
+            .with_caption("Supporting apsaK NG")
             .with_back_enabled(core.has_stack(), |_|{
                 *back.borrow_mut() = true;
             })
@@ -83,15 +83,15 @@ impl ModuleT for Donations {
                 
                 ui.add_space(8.);                                    
 
-                ui.label(i18n("The Kaspa NG software represents an ongoing effort focused on building a state-of-the-art software platform dedicated to the Kaspa BlockDAG cryptocurrency network. Ideological at its core, this software prioritizes security, privacy, performance, and decentralization."));
+                ui.label(i18n("The apsaK NG software represents an ongoing effort focused on building a state-of-the-art software platform dedicated to the apsaK BlockDAG cryptocurrency network. Ideological at its core, this software prioritizes security, privacy, performance, and decentralization."));
                 ui.label(" ");
                 ui.label(i18n("Because of its focus on security and performance, this software is entirely developed in Rust, demanding significantly more time and effort compared to other traditional modern web-driven software."));
                 ui.label(" ");
                 ui.label(i18n("We greatly appreciate your help in backing our efforts."));
                 ui.label(" ");
 
-                let kaspa_ng_fund = this.qr_kaspa_ng_fund();
-                this.render_destination(ui, kaspa_ng_fund);
+                let apsak_ng_fund = this.qr_apsak_ng_fund();
+                this.render_destination(ui, apsak_ng_fund);
                 ui.label(" ");
 
             })

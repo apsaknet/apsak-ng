@@ -5,8 +5,8 @@
 
     // const EVENT_KEY = (Math.random()*1e10).toString(16).substring(0, 12);
     const EVENT_KEY = (Math.random() * 1e10).toString().substring(0, 10);
-    const EVENT_NAME = "kaspa-wallet-message-" + EVENT_KEY;
-    const EVENT_REPLY = "kaspa-wallet-message-reply-" + EVENT_KEY;
+    const EVENT_NAME = "apsak-wallet-message-" + EVENT_KEY;
+    const EVENT_REPLY = "apsak-wallet-message-reply-" + EVENT_KEY;
 
     log("EVENT_KEY", EVENT_KEY);
 

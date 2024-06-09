@@ -33,7 +33,7 @@ cfg_if! {
                     .first()
                     .map(|cpu|(cpu.frequency(),cpu.brand().to_string())).unzip();
 
-                let fd_limit = kaspa_utils::fd_budget::limit();
+                let fd_limit = apsak_utils::fd_budget::limit();
 
                 Self {
                     cpu_physical_core_count,
@@ -46,7 +46,7 @@ cfg_if! {
             }
 
             pub fn render(&self, ui: &mut Ui) {
-                use kaspa_metrics_core::data::as_data_size;
+                use apsak_metrics_core::data::as_data_size;
 
                 CollapsingHeader::new(i18n("System"))
                     .default_open(true)

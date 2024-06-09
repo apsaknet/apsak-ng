@@ -1,6 +1,6 @@
 #![warn(clippy::all, rust_2018_idioms)]
 
-extern crate self as kaspa_ng_core;
+extern crate self as apsak_ng_core;
 
 mod core;
 pub use core::Core;

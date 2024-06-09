@@ -42,7 +42,7 @@ impl<'context> BalancePane<'context> {
                                         let symbol = symbol.to_uppercase();
                                         let MarketData { price,  precision, .. } = data;
                                         // let text = 
-                                        let amount = sompi_to_kaspa(balance.mature) * (*price);
+                                        let amount = ipmos_to_apsak(balance.mature) * (*price);
                                         format_currency_with_symbol(amount, *precision, symbol.as_str())
                                     })
                             }).collect::<Vec<_>>().join("  ");
@@ -55,7 +55,7 @@ impl<'context> BalancePane<'context> {
             if balance.pending != 0 {
                 ui.label(format!(
                     "Pending: {}",
-                    sompi_to_kaspa_string_with_suffix(
+                    ipmos_to_apsak_string_with_suffix(
                         balance.pending,
                         network_type
                     )
@@ -64,7 +64,7 @@ impl<'context> BalancePane<'context> {
             if balance.outgoing != 0 {
                 ui.label(format!(
                     "Sending: {}",
-                    sompi_to_kaspa_string_with_suffix(
+                    ipmos_to_apsak_string_with_suffix(
                         balance.outgoing,
                         network_type
                     )

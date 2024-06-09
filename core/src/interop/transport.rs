@@ -1,6 +1,6 @@
 use crate::imports::*;
-use kaspa_wallet_core::error::Error;
-use kaspa_wallet_core::result::Result;
+use apsak_wallet_core::error::Error;
+use apsak_wallet_core::result::Result;
 
 #[repr(u8)]
 #[derive(Debug, BorshSerialize, BorshDeserialize)]

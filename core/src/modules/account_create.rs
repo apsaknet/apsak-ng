@@ -130,7 +130,7 @@ impl ModuleT for AccountCreate {
                                 ui.label(format!("Private Key: {}", prv_key_data_info.name_or_id()));
                                 ui.add_space(16.);
                                 if ui.add(CompositeButton::new(
-                                    "Kaspa Core HD account",
+                                    "apsaK Core HD account",
                                     "BIP-44 "
                                 ))
                                 .clicked() {

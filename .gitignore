@@ -11,3 +11,4 @@ datadir
 /discard
 analyzer-target
 .vscode/launch.json
+core/resources/i18n/i18n.json

@@ -1,9 +1,9 @@
 use super::*;
 use std::collections::hash_map::Entry;
 
-// https://api.coingecko.com/api/v3/simple/price?ids=kaspa&vs_currencies=usd%2Ccny&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true
+// https://api.coingecko.com/api/v3/simple/price?ids=apsak&vs_currencies=usd%2Ccny&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true
 // {
-//     "kaspa": {
+//     "apsak": {
 //       "usd": 0.137395,
 //       "usd_market_cap": 2954668910.049152,
 //       "usd_24h_vol": 138844602.78193888,
@@ -25,12 +25,12 @@ use std::collections::hash_map::Entry;
 
 #[derive(Default, Debug, Serialize, Deserialize)]
 struct CoinGeckoSimplePrice {
-    kaspa: Option<AHashMap<String, f64>>,
+    apsak: Option<AHashMap<String, f64>>,
 }
 
 impl CoinGeckoSimplePrice {
     pub async fn get(currencies: &[&str]) -> Result<Self> {
-        let ids = "kaspa";
+        let ids = "apsak";
         let currencies = currencies
             .iter()
             .map(|currency| currency.to_lowercase())
@@ -44,8 +44,8 @@ impl CoinGeckoSimplePrice {
 impl From<CoinGeckoSimplePrice> for MarketDataMap {
     fn from(data: CoinGeckoSimplePrice) -> Self {
         let mut prices = AHashMap::new();
-        if let Some(kaspa) = data.kaspa {
-            prices = group_by_currency_prefix(&kaspa);
+        if let Some(apsak) = data.apsak {
+            prices = group_by_currency_prefix(&apsak);
         }
         prices
     }

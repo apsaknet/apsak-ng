@@ -5,12 +5,12 @@ pub mod transport;
 
 use crate::imports::*;
 use client::*;
-use kaspa_ng_core::interop::Client;
+use apsak_ng_core::interop::Client;
 
 static mut SERVER: Option<Arc<Server>> = None;
 // background script
 #[wasm_bindgen]
-pub async fn kaspa_ng_background() {
+pub async fn apsak_ng_background() {
     workflow_wasm::panic::init_console_panic_hook();
 
     let server = Arc::new(Server::new().await);
@@ -21,7 +21,7 @@ pub async fn kaspa_ng_background() {
     chrome_runtime_scripting::unregister_content_scripts(None).await;
 
     let script = RegisteredContentScript::new();
-    script.set_id("kaspa-wallet-ext-content-script".to_string());
+    script.set_id("apsak-wallet-ext-content-script".to_string());
     script.set_js(vec!["content-script.js"]);
     script.set_persist_across_sessions(false);
     script.set_matches(vec!["https://*/*", "http://*/*"]);
@@ -33,12 +33,12 @@ pub async fn kaspa_ng_background() {
 
     server.start().await;
 
-    log_info!("Kaspa NG {} (background)", kaspa_ng_core::app::VERSION);
+    log_info!("apsaK NG {} (background)", apsak_ng_core::app::VERSION);
 }
 
 #[wasm_bindgen]
-pub async fn kaspa_ng_main() {
-    // log_info!("kaspa_ng_main called successfully in the popup!");
+pub async fn apsak_ng_main() {
+    // log_info!("apsak_ng_main called successfully in the popup!");
     workflow_wasm::panic::init_console_panic_hook();
 
     let application_events = ApplicationEventsChannel::unbounded();
@@ -65,7 +65,7 @@ pub async fn kaspa_ng_main() {
         Some(client.adaptor().clone()),
     );
 
-    if let Err(err) = app::kaspa_ng_main(application_context).await {
+    if let Err(err) = app::apsak_ng_main(application_context).await {
         log_error!("Error: {err}");
     }
 }

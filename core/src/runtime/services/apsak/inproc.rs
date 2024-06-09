@@ -1,11 +1,11 @@
 use crate::imports::*;
-use crate::runtime::services::kaspa::Config;
-use kaspa_core::core::Core;
-use kaspa_core::signals::Shutdown;
-use kaspa_utils::fd_budget;
-use kaspa_wallet_core::rpc::DynRpcApi;
-use kaspad_lib::args::Args;
-use kaspad_lib::daemon::{create_core_with_runtime, Runtime as KaspadRuntime};
+use crate::runtime::services::apsak::Config;
+use apsak_core::core::Core;
+use apsak_core::signals::Shutdown;
+use apsak_utils::fd_budget;
+use apsak_wallet_core::rpc::DynRpcApi;
+use apsakd_lib::args::Args;
+use apsakd_lib::daemon::{create_core_with_runtime, Runtime as ApsakdRuntime};
 
 struct Inner {
     thread: std::thread::JoinHandle<()>,
@@ -29,7 +29,7 @@ impl InProc {
 }
 
 #[async_trait]
-impl super::Kaspad for InProc {
+impl super::Apsakd for InProc {
     async fn start(self: Arc<Self>, config: Config) -> Result<()> {
         let args = Args::try_from(config)?;
 
@@ -38,11 +38,11 @@ impl super::Kaspad for InProc {
             - args.inbound_limit as i32
             - args.outbound_target as i32;
 
-        let runtime = KaspadRuntime::default();
+        let runtime = ApsakdRuntime::default();
         let (core, rpc_core_service) = create_core_with_runtime(&runtime, &args, fd_total_budget);
         let core_ = core.clone();
         let thread = std::thread::Builder::new()
-            .name("kaspad".to_string())
+            .name("apsakd".to_string())
             .spawn(move || {
                 core_.run();
             })?;
@@ -65,7 +65,7 @@ impl super::Kaspad for InProc {
             drop(core);
             thread
                 .join()
-                .map_err(|_| Error::custom("kaspad inproc thread join failure"))?;
+                .map_err(|_| Error::custom("apsakd inproc thread join failure"))?;
         }
         Ok(())
     }

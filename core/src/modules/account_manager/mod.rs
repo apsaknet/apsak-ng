@@ -2,8 +2,8 @@ use crate::imports::*;
 use crate::primitives::account;
 use std::borrow::Cow;
 use egui_phosphor::thin::{CLOUD_ARROW_DOWN, CLOUD_SLASH};
-use kaspa_wallet_core::tx::{GeneratorSummary, PaymentOutput, Fees};
-use kaspa_wallet_core::api::*;
+use apsak_wallet_core::tx::{GeneratorSummary, PaymentOutput, Fees};
+use apsak_wallet_core::api::*;
 use workflow_core::runtime;
 use crate::primitives::descriptor::*;
 
@@ -116,10 +116,10 @@ pub struct ManagerContext {
     transfer_to_account : Option<Account>,
     destination_address_string : String,
     send_amount_text: String,
-    send_amount_sompi : u64,
+    send_amount_ipmos : u64,
     enable_priority_fees : bool,
     priority_fees_text : String,
-    priority_fees_sompi : u64,
+    priority_fees_ipmos : u64,
     estimate : Arc<Mutex<EstimatorStatus>>,
     request_estimate : Option<bool>,
     address_status : AddressStatus,
@@ -151,10 +151,10 @@ impl Zeroize for ManagerContext {
         self.transfer_to_account = None;
         self.destination_address_string = String::default();
         self.send_amount_text = String::default();
-        self.send_amount_sompi = 0;
+        self.send_amount_ipmos = 0;
         self.enable_priority_fees = false;
         self.priority_fees_text = String::default();
-        self.priority_fees_sompi = 0;
+        self.priority_fees_ipmos = 0;
         *self.estimate.lock().unwrap() = EstimatorStatus::None;
         self.address_status = AddressStatus::None;
         self.transaction_kind = None;
@@ -364,7 +364,7 @@ impl AccountManager {
                                             .color(theme_color().icon_color_default)
                                     );
                                     ui.add_space(8.);                                    
-                                    ui.label(i18n("You are currently not connected to the Kaspa node."));
+                                    ui.label(i18n("You are currently not connected to the apsaK node."));
                                     ui.add_space(16.);                                    
                                 } else if !core.state().is_synced() {
                                     ui.label(
@@ -373,7 +373,7 @@ impl AccountManager {
                                             .color(theme_color().icon_color_default)
                                     );
                                     ui.add_space(8.);
-                                    ui.label(i18n("The node is currently syncing with the Kaspa p2p network. Account balances may be out of date."));
+                                    ui.label(i18n("The node is currently syncing with the apsaK p2p network. Account balances may be out of date."));
                                     ui.add_space(16.);
                                 }
 

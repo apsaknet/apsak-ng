@@ -1,6 +1,6 @@
 use crate::imports::*;
-use kaspa_ng_core::interop;
-use kaspa_ng_core::interop::transport::Target;
+use apsak_ng_core::interop;
+use apsak_ng_core::interop::transport::Target;
 
 pub type ListenerClosure = Closure<dyn FnMut(JsValue, Sender, JsValue) -> JsValue>;
 

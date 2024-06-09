@@ -1,6 +1,6 @@
 import {apiBuilder} from "./api.js";
 
-import init from '/kaspa-ng.js';
+import init from '/apsak-ng.js';
 (async () => {
 
     function initPageScript(tabId, args){
@@ -32,10 +32,10 @@ import init from '/kaspa-ng.js';
     globalThis.initPageScript = initPageScript;
     globalThis.openPopup = openPopup;
 
-    let kaspa_ng = await init('/kaspa-ng_bg.wasm');
+    let apsak_ng = await init('/apsak-ng_bg.wasm');
 
     // console.log("init", init);
-    // console.log("kaspa_ng", kaspa_ng);
+    // console.log("apsak_ng", apsak_ng);
 
-    await kaspa_ng.kaspa_ng_background();
+    await apsak_ng.apsak_ng_background();
 })();

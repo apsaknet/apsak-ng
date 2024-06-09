@@ -1,4 +1,4 @@
-use kaspa_metrics_core::MetricGroup;
+use apsak_metrics_core::MetricGroup;
 
 mod color;
 pub use color::*;

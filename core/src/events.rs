@@ -2,8 +2,8 @@ use crate::imports::*;
 use crate::market::*;
 use crate::storage::StorageUpdateOptions;
 use crate::utils::Release;
-use kaspa_metrics_core::MetricsSnapshot;
-use kaspa_wallet_core::{events as kaspa, storage::PrvKeyDataInfo};
+use apsak_metrics_core::MetricsSnapshot;
+use apsak_wallet_core::{events as apsak, storage::PrvKeyDataInfo};
 
 pub type ApplicationEventsChannel = crate::runtime::channel::Channel<Events>;
 
@@ -29,7 +29,7 @@ pub enum Events {
         wallet_list: Arc<Vec<WalletDescriptor>>,
     },
     Wallet {
-        event: Box<kaspa::Events>,
+        event: Box<apsak::Events>,
     },
     WalletUpdate,
     PrvKeyDataInfo {

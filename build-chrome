@@ -8,7 +8,7 @@ mkdir ./dist-chrome
 mkdir ./dist-chrome/icons
 
 cp -r ./core/resources/icons ./dist-chrome/
-cp ./core/resources/images/kaspa-ng.svg ./dist-chrome/
+cp ./core/resources/images/apsak-ng.svg ./dist-chrome/
 
 cp ./extensions/chrome/style.css ./dist-chrome/
 cp ./extensions/chrome/manifest.json ./dist-chrome/
@@ -18,4 +18,4 @@ cp ./extensions/chrome/background.js ./dist-chrome/
 cp ./extensions/chrome/content-script.js ./dist-chrome/
 cp ./extensions/chrome/api.js ./dist-chrome/
 
-wasm-pack build $@ --target web --out-name kaspa-ng --out-dir ../../dist-chrome ./extensions/chrome/ --features browser-extension
+wasm-pack build $@ --target web --out-name apsak-ng --out-dir ../../dist-chrome ./extensions/chrome/ --features browser-extension

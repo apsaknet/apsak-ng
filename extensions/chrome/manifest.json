@@ -2,8 +2,8 @@
     "manifest_version": 3,
     "version": "0.1.0",
     "version_name": "0.1.0 beta",
-    "name": "Kaspa NG",
-    "short_name": "kaspa-ng",
+    "name": "apsaK NG",
+    "short_name": "apsak-ng",
     "permissions": [
         "scripting",
         "alarms",

@@ -1,6 +1,6 @@
 use crate::imports::*;
 use egui_phosphor::thin::*;
-use kaspa_wallet_core::{wallet::Wallet, account::{BIP32_ACCOUNT_KIND, LEGACY_ACCOUNT_KIND}};
+use apsak_wallet_core::{wallet::Wallet, account::{BIP32_ACCOUNT_KIND, LEGACY_ACCOUNT_KIND}};
 
 #[derive(Clone)]
 pub enum State {
@@ -137,7 +137,7 @@ impl ModuleT for Scanner {
                                     .color(theme_color().error_color)
                             );
                             ui.add_space(8.);                                    
-                            ui.label(i18n("You are currently not connected to the Kaspa node."));
+                            ui.label(i18n("You are currently not connected to the apsaK node."));
                             ui.add_space(16.);
                             
                             if ui.large_button(i18n("Close")).clicked() {
@@ -152,7 +152,7 @@ impl ModuleT for Scanner {
                                     .color(theme_color().warning_color)
                             );
                             ui.add_space(8.);
-                            ui.label(i18n("The node is currently syncing with the Kaspa p2p network. Please wait for the node to sync."));
+                            ui.label(i18n("The node is currently syncing with the apsaK p2p network. Please wait for the node to sync."));
                             ui.add_space(16.);
 
                             if ui.large_button(i18n("Close")).clicked() {

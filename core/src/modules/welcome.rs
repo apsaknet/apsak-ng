@@ -13,7 +13,7 @@ impl Welcome {
         let mut settings = Settings::default();
 
         #[cfg(target_arch = "wasm32")] {
-            settings.node.node_kind = KaspadNodeKind::Remote;
+            settings.node.node_kind = ApsakdNodeKind::Remote;
         }
 
         Self { 
@@ -30,26 +30,28 @@ impl Welcome {
 
         let mut error = None;
 
-        ui.heading(i18n("Welcome to Kaspa NG"));
+        ui.heading(i18n("Welcome to apsaK NG"));
         ui.add_space(16.0);
-        ui.label(i18n("Please configure your Kaspa NG settings"));
+        ui.label(i18n("Please configure your apsaK NG settings"));
         ui.add_space(16.0);
 
         CollapsingHeader::new(i18n("Settings"))
             .default_open(true)
             .show(ui, |ui| {
-                CollapsingHeader::new(i18n("Kaspa Network"))
-                    .default_open(true)
+                CollapsingHeader::new(i18n("apsaK Network"))
+                    .default_open(false)
                     .show(ui, |ui| {
 
-                            ui.horizontal_wrapped(|ui| {
-                                Network::iter().for_each(|network| {
+                        ui.horizontal_wrapped(|ui| {
+                            Network::iter().for_each(|network| {
+                                if *network != Network::Testnet10 && *network != Network::Testnet11 {
                                     ui.radio_value(&mut self.settings.node.network, *network, format!("{} ({})",network.name(),network.describe()));
-
-                                });
+                                }
                             });
+                        });
 
-                            match self.settings.node.network {
+
+                        match self.settings.node.network {
                                 Network::Mainnet => {
                                     // ui.colored_label(theme_color().warning_color, i18n("Please note that this is a beta release. Until this message is removed, please avoid using the wallet with mainnet funds."));
                                 }
@@ -57,25 +59,25 @@ impl Welcome {
                                 Network::Testnet11 => { }
                             }
                         });
-                
-                CollapsingHeader::new(i18n("Kaspa p2p Node & Connection"))
-                    .default_open(true)
+
+                CollapsingHeader::new(i18n("apsaK p2p Node & Connection"))
+                    .default_open(false)
                     .show(ui, |ui| {
                         ui.horizontal_wrapped(|ui| {
-                            // KaspadNodeKind::iter().for_each(|node| {
+                            // ApsakdNodeKind::iter().for_each(|node| {
                             [
-                                KaspadNodeKind::Disable,
-                                KaspadNodeKind::Remote,
+                                ApsakdNodeKind::Disable,
+                                //ApsakdNodeKind::Remote,
                                 #[cfg(not(target_arch = "wasm32"))]
-                                KaspadNodeKind::IntegratedAsDaemon,
-                                // KaspadNodeKind::ExternalAsDaemon,
-                                // KaspadNodeKind::IntegratedInProc,
+                                ApsakdNodeKind::IntegratedAsDaemon,
+                                // ApsakdNodeKind::ExternalAsDaemon,
+                                // ApsakdNodeKind::IntegratedInProc,
                             ].iter().for_each(|node_kind| {
                                 ui.radio_value(&mut self.settings.node.node_kind, *node_kind, node_kind.to_string()).on_hover_text_at_pointer(node_kind.describe());
                             });
                         });
 
-                        if self.settings.node.node_kind == KaspadNodeKind::Remote {
+                        if self.settings.node.node_kind == ApsakdNodeKind::Remote {
                             error = crate::modules::settings::Settings::render_remote_settings(core,ui,&mut self.settings.node);
                         }
                     });
@@ -114,7 +116,7 @@ impl Welcome {
                                         ui.selectable_value(&mut theme_color, name.to_string(), name);
                                     });
                                 });
-                                
+
                             if theme_color != self.settings.user_interface.theme_color {
                                 self.settings.user_interface.theme_color = theme_color;
                                 apply_theme_color_by_name(ui.ctx(), self.settings.user_interface.theme_color.clone());
@@ -133,12 +135,12 @@ impl Welcome {
                                         ui.selectable_value(&mut theme_style, name.to_string(), name);
                                     });
                                 });
-                                
+
                             if theme_style != self.settings.user_interface.theme_style {
                                 self.settings.user_interface.theme_style = theme_style;
                                 apply_theme_style_by_name(ui.ctx(), self.settings.user_interface.theme_style.clone());
                             }
-                        });        
+                        });
                     });
 
                 ui.add_space(32.0);
@@ -148,7 +150,7 @@ impl Welcome {
                     });
                     ui.add_space(32.0);
                 } else {
-                    
+
                     ui.horizontal(|ui| {
                         ui.add_space(
                             ui.available_width()
@@ -159,7 +161,7 @@ impl Welcome {
                             let mut settings = self.settings.clone();
                             settings.initialized = true;
                             settings.store_sync().expect("Unable to store settings");
-                            self.runtime.kaspa_service().update_services(&self.settings.node, None);
+                            self.runtime.apsak_service().update_services(&self.settings.node, None);
                             core.settings = settings.clone();
                             core.get_mut::<modules::Settings>().load(settings);
                             cfg_if!{
@@ -178,12 +180,12 @@ impl Welcome {
         
         ui.vertical_centered(|ui| {
             ui.add_space(32.0);
-            // ui.colored_label(theme_color().alert_color, "Please note - this is a beta release - Kaspa NG is still in early development and is not yet ready for production use.");
+            // ui.colored_label(theme_color().alert_color, "Please note - this is a beta release - apsaK NG is still in early development and is not yet ready for production use.");
             // ui.add_space(32.0);
-            ui.label(format!("Kaspa NG v{}  •  Rusty Kaspa v{}", env!("CARGO_PKG_VERSION"), kaspa_wallet_core::version()));
+            ui.label(format!("apsaK NG v{}  •  Rusty apsaK v{}", env!("CARGO_PKG_VERSION"), apsak_wallet_core::version()));
             ui.hyperlink_to(
-                "https://kaspa.org",
-                "https://kaspa.org",
+                "https://apsak.org",
+                "https://apsak.org",
             );
     
         });
@@ -197,13 +199,14 @@ impl Welcome {
         let mut proceed = false;
 
         Panel::new(self)
-            .with_caption(i18n("Welcome to Kaspa NG"))
+            .with_caption(i18n("Welcome to apsaK NG"))
             .with_header(|_this, ui| {
-                ui.label(i18n("Please select Kaspa network"));
+                ui.label(i18n("Please select apsaK network"));
             })
             .with_body(|this, ui| {
                 Network::iter().for_each(|network| {
-                    if ui.add_sized(
+                    if network.name() == "Mainnet" {
+                        if ui.add_sized(
                             theme_style().large_button_size,
                             CompositeButton::opt_image_and_text(
                                 None,
@@ -211,22 +214,24 @@ impl Welcome {
                                 Some(network.describe().into()),
                             ),
                         )
-                        .clicked()
-                    {
-                        this.settings.node.network = *network;
-                        proceed = true;
-                    }
+                            .clicked()
+                        {
+                            this.settings.node.network = *network;
+                            proceed = true;
+                        }
 
-                    ui.add_space(8.);
+                        ui.add_space(8.);
+                    }
                 });
 
+
                 ui.add_space(32.0);
-                
+
                 ui.colored_label(theme_color().alert_color, RichText::new("β").size(64.0));
                 // ui.add_space(8.0);
-                // ui.colored_label(theme_color().alert_color, "Please note - this is a beta release - Kaspa NG is still in early development and is not yet ready for production use.");
+                // ui.colored_label(theme_color().alert_color, "Please note - this is a beta release - apsaK NG is still in early development and is not yet ready for production use.");
             })
-            .render(ui);        
+            .render(ui);
 
         if proceed {
             let mut settings = self.settings.clone();
@@ -234,7 +239,7 @@ impl Welcome {
 
             settings.store_sync().expect("Unable to store settings");
             core.settings = settings.clone();
-            self.runtime.kaspa_service().update_services(&settings.node, None);
+            self.runtime.apsak_service().update_services(&settings.node, None);
 
             core.get_mut::<modules::Settings>().load(settings);
             core.select::<modules::Overview>();

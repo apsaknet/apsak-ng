@@ -2,8 +2,8 @@ var cacheName = 'dag-wallet';
 var filesToCache = [
   './',
   './index.html',
-  './kaspa-ng.js',
-  './kaspa-ng_bg.wasm',
+  './apsak-ng.js',
+  './apsak-ng_bg.wasm',
 ];
 
 /* Start the service worker and cache all of the app's content */

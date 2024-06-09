@@ -1,4 +1,4 @@
-use kaspa_rpc_core::RpcPeerInfo;
+use apsak_rpc_core::RpcPeerInfo;
 
 use crate::imports::*;
 use crate::utils::format_duration;

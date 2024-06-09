@@ -34,20 +34,20 @@ impl<'context> Processor<'context> {
 
                 if request_estimate {
 
-                    let priority_fees_sompi = if self.context.enable_priority_fees {
-                        self.context.priority_fees_sompi
+                    let priority_fees_ipmos = if self.context.enable_priority_fees {
+                        self.context.priority_fees_ipmos
                     } else { 0 };
 
                     let address = match network_type {
-                        NetworkType::Testnet => Address::try_from("kaspatest:qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhqrxplya").unwrap(),
-                        NetworkType::Mainnet => Address::try_from("kaspa:qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqkx9awp4e").unwrap(),
+                        NetworkType::Testnet => Address::try_from("apsaktest:qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhqrxplya").unwrap(),
+                        NetworkType::Mainnet => Address::try_from("apsak:qqf49gdedgzknx7m0z05qdyhxfrfnz6u4w6r2t93vru5q5hayg6yvxj0xhx0t").unwrap(),
                         _ => panic!("Unsupported network"),
                     };
 
                     let account_id = account.id();
                     let payment_output = PaymentOutput {
                         address,
-                        amount: self.context.send_amount_sompi,
+                        amount: self.context.send_amount_ipmos,
                     };
 
                     let status = self.context.estimate.clone();
@@ -55,7 +55,7 @@ impl<'context> Processor<'context> {
                         let request = AccountsEstimateRequest {
                             account_id,
                             destination: payment_output.into(),
-                            priority_fee_sompi: Fees::SenderPays(priority_fees_sompi),
+                            priority_fee_ipmos: Fees::SenderPays(priority_fees_ipmos),
                             payload: None,
                         };
 
@@ -85,8 +85,8 @@ impl<'context> Processor<'context> {
                         unreachable!("expecting only one of destination address or transfer to account");
                     }
 
-                    let priority_fees_sompi = if self.context.enable_priority_fees {
-                        self.context.priority_fees_sompi
+                    let priority_fees_ipmos = if self.context.enable_priority_fees {
+                        self.context.priority_fees_ipmos
                     } else { 0 };
 
                     let wallet_secret = Secret::from(self.context.wallet_secret.clone());
@@ -99,7 +99,7 @@ impl<'context> Processor<'context> {
                             let account_id = account.id();
                             let payment_output = PaymentOutput {
                                 address,
-                                amount: self.context.send_amount_sompi,
+                                amount: self.context.send_amount_ipmos,
                             };
         
                             spawn_with_result(&send_result, async move {
@@ -108,7 +108,7 @@ impl<'context> Processor<'context> {
                                     destination: payment_output.into(),
                                     wallet_secret,
                                     payment_secret,
-                                    priority_fee_sompi: Fees::SenderPays(priority_fees_sompi),
+                                    priority_fee_ipmos: Fees::SenderPays(priority_fees_ipmos),
                                     payload: None,
                                 };
         
@@ -122,7 +122,7 @@ impl<'context> Processor<'context> {
                         TransactionKind::Transfer => {
                             let destination_account_id = self.context.transfer_to_account.as_ref().expect("transfer destination account").id();
                             let source_account_id = account.id();
-                            let transfer_amount_sompi = self.context.send_amount_sompi;
+                            let transfer_amount_ipmos = self.context.send_amount_ipmos;
 
                             spawn_with_result(&send_result, async move {
                                 let request = AccountsTransferRequest {
@@ -130,8 +130,8 @@ impl<'context> Processor<'context> {
                                     destination_account_id,
                                     wallet_secret,
                                     payment_secret,
-                                    priority_fee_sompi: Some(Fees::SenderPays(priority_fees_sompi)),
-                                    transfer_amount_sompi,
+                                    priority_fee_ipmos: Some(Fees::SenderPays(priority_fees_ipmos)),
+                                    transfer_amount_ipmos,
                                 };
         
                                 let generator_summary = runtime().wallet().accounts_transfer_call(request).await?.generator_summary;

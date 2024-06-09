@@ -28,7 +28,7 @@ impl Signals {
                 }
                 1 => {
                     // start runtime abort sequence
-                    // (attempt to gracefully shutdown kaspad if running)
+                    // (attempt to gracefully shutdown apsakd if running)
                     // this will execute process::exit(1) after 5 seconds
                     println!("^SIGTERM - aborting...");
                     crate::runtime::abort();

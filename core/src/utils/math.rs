@@ -1,6 +1,6 @@
 use crate::imports::*;
 
-pub fn hash_to_y_coord(hash: &kaspa_consensus_core::Hash, scale: f64) -> f64 {
+pub fn hash_to_y_coord(hash: &apsak_consensus_core::Hash, scale: f64) -> f64 {
     let bytes = hash.as_bytes().iter().take(2).cloned().collect::<Vec<_>>();
     (u16::from_le_bytes(bytes.as_slice().try_into().unwrap()) as f64 - 32767.5) / 32767.5 * scale
 }

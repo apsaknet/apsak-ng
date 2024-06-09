@@ -3,7 +3,7 @@ use workflow_core::runtime::is_wasm;
 use egui::load::Bytes;
 
 #[cfg(not(feature = "lean"))]
-use kaspa_metrics_core::{Metric,MetricGroup};
+use apsak_metrics_core::{Metric,MetricGroup};
 #[cfg(not(feature = "lean"))]
 use egui_plot::{
     Legend,
@@ -84,7 +84,7 @@ impl Overview {
     #[cfg(not(feature = "lean"))]
     fn render_stats(&mut self, core: &mut Core, ui : &mut Ui) {
 
-        CollapsingHeader::new(i18n("Kaspa p2p Node"))
+        CollapsingHeader::new(i18n("apsaK p2p Node"))
         .default_open(true)
         .show(ui, |ui| {
 
@@ -107,7 +107,7 @@ impl Overview {
         let logo_rect = Rect::from_min_size(Pos2::new(left, top), logo_size);
 
         if screen_rect.width() > 768.0 && !core.device().single_pane() {
-            Image::new(ImageSource::Bytes { uri : Cow::Borrowed("bytes://logo.svg"), bytes : Bytes::Static(crate::app::KASPA_NG_LOGO_SVG)})
+            Image::new(ImageSource::Bytes { uri : Cow::Borrowed("bytes://logo.svg"), bytes : Bytes::Static(crate::app::APSAK_NG_LOGO_SVG)})
             .maintain_aspect_ratio(true)
             .max_size(logo_size)
             .fit_to_exact_size(logo_size)
@@ -173,14 +173,14 @@ impl Overview {
                     }
 
                 #[cfg(not(target_arch = "wasm32"))]
-                CollapsingHeader::new(i18n("Kaspa NG"))
+                CollapsingHeader::new(i18n("apsaK NG"))
                     .default_open(true)
                     .show(ui, |ui| {
                         use egui_phosphor::light::CLOUD;
 
                         ui.hyperlink_to_tab(
-                            format!("• {CLOUD} {}",i18n("Kaspa NG online")),
-                            "https://kaspa-ng.org"
+                            format!("• {CLOUD} {}",i18n("apsaK NG online")),
+                            "https://ng.apsak.org"
                         );
                     });                    
 
@@ -192,15 +192,11 @@ impl Overview {
 
                         ui.hyperlink_to_tab(
                             format!("• {DATABASE} {}",i18n("Explorer")),
-                            "https://explorer.kaspa.org/",
-                        );
-                        ui.hyperlink_to_tab(
-                            format!("• {CHART_SCATTER} {}",i18n("Statistics")),
-                            "https://kas.fyi",
+                            "https://explorer.apsak.org/",
                         );
                         // ui.hyperlink_to_tab(
                         //     format!("• {DISCORD_LOGO} {}",i18n("Discord")),
-                        //     "https://discord.com/invite/kS3SK5F36R",
+                        //     "https://discord.gg/qswCegbz3H",
                         // );
                     });
 
@@ -212,7 +208,7 @@ impl Overview {
 
                             ui.hyperlink_to_tab(
                                 format!("• {HAND_COINS} {}",i18n("Faucet")),
-                                "https://faucet-t11.kaspa.ws",
+                                "https://faucet-t11.apsak.ws",
                             );
                         });
                 }
@@ -224,15 +220,15 @@ impl Overview {
                         use egui_phosphor::light::{DISCORD_LOGO,GITHUB_LOGO};
 
                         ui.hyperlink_to_tab(
-                            format!("• {}",i18n("Kaspa NG on GitHub")),
-                            "https://github.com/aspectron/kaspa-ng"
+                            format!("• {}",i18n("apsaK NG on GitHub")),
+                            "https://github.com/apsaknet/apsak-ng"
                         );
                         ui.hyperlink_to_tab(
-                            format!("• {}",i18n("Rusty Kaspa on GitHub")),
-                            "https://github.com/kaspanet/rusty-kaspa",
+                            format!("• {}",i18n("Rusty apsaK on GitHub")),
+                            "https://github.com/apsaknet/rusty-apsak",
                         );
                         ui.hyperlink_to_tab(
-                            format!("• {}",i18n("Kaspa Integration Guide")),
+                            format!("• {}",i18n("apsaK Integration Guide")),
                             "https://kaspa.aspectron.org",
                         );
                         ui.hyperlink_to_tab(
@@ -245,11 +241,11 @@ impl Overview {
                         );
                         ui.hyperlink_to_tab(
                             format!("• {}",i18n("Rust Wallet SDK")),
-                            "https://docs.rs/kaspa-wallet-core/",
+                            "https://docs.rs/apsak-wallet-core/",
                         );
                         ui.hyperlink_to_tab(
                             format!("• {}",i18n("Discord")),
-                            "https://discord.com/invite/kS3SK5F36R",
+                            "https://discord.gg/qswCegbz3H",
                         );
                     });
 
@@ -295,8 +291,8 @@ impl Overview {
                 CollapsingHeader::new(i18n("Build"))
                     .default_open(true)
                     .show(ui, |ui| {
-                        ui.add(Label::new(format!("Kaspa NG v{}-{} + Rusty Kaspa v{}", env!("CARGO_PKG_VERSION"),crate::app::GIT_DESCRIBE, kaspa_wallet_core::version())));
-                        // if ui.add(Label::new(format!("Kaspa NG v{}-{} + Rusty Kaspa v{}", env!("CARGO_PKG_VERSION"),crate::app::GIT_DESCRIBE, kaspa_wallet_core::version())).sense(Sense::click())).clicked() {
+                        ui.add(Label::new(format!("apsaK NG v{}-{} + Rusty apsaK v{}", env!("CARGO_PKG_VERSION"),crate::app::GIT_DESCRIBE, apsak_wallet_core::version())));
+                        // if ui.add(Label::new(format!("apsaK NG v{}-{} + Rusty apsaK v{}", env!("CARGO_PKG_VERSION"),crate::app::GIT_DESCRIBE, apsak_wallet_core::version())).sense(Sense::click())).clicked() {
                         //     core.select::<modules::Changelog>();
                         // }
                         ui.label(format!("Timestamp: {}", crate::app::BUILD_TIMESTAMP));
@@ -322,15 +318,15 @@ impl Overview {
                     .default_open(false)
                     .show(ui, |ui| {
                         ui.vertical(|ui|{
-                            ui.label("Rusty Kaspa");
-                            ui.label("Copyright (c) 2024 Kaspa Developers");
+                            ui.label("Rusty apsaK");
+                            ui.label("Copyright (c) 2024 apsaK Developers");
                             ui.label("License: ISC");
-                            ui.hyperlink_url_to_tab("https://github.com/kaspanet/rusty-kaspa");
+                            ui.hyperlink_url_to_tab("https://github.com/apsaknet/rusty-apsak");
                             ui.label("");
-                            ui.label("Kaspa NG");
+                            ui.label("apsaK NG");
                             ui.label("Copyright (c) 2024 ASPECTRON");
                             ui.label("License: MIT (RESTRICTED)");
-                            ui.hyperlink_url_to_tab("https://github.com/aspectron/kaspa-ng");
+                            ui.hyperlink_url_to_tab("https://github.com/apsaknet/apsak-ng");
                             ui.label("");
                             ui.label("WORKFLOW-RS");
                             ui.label("Copyright (c) 2024 ASPECTRON");
@@ -358,7 +354,7 @@ impl Overview {
                     CollapsingHeader::new(i18n("Donations"))
                         .default_open(true)
                         .show(ui, |ui| {
-                            if ui.link(i18n("Supporting Kaspa NG development")).clicked() {
+                            if ui.link(i18n("Supporting apsaK NG development")).clicked() {
                                 core.select::<modules::Donations>();
                             }
                         });

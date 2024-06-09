@@ -1,11 +1,11 @@
 [package]
-name = "kaspa-ng-core"
+name = "apsak-ng-core"
 version.workspace = true
 edition.workspace = true
 repository.workspace = true
 authors.workspace = true
 license.workspace = true
-description = "Core framework for Kaspa NG"
+description = "Core framework for apsaK NG"
 build = "build.rs"
 
 [lib]
@@ -23,19 +23,19 @@ default = []
 vergen = { version = "8.2.6", features = ["build", "git", "gitcl", "rustc", "cargo"] }
 
 [dependencies]
-kaspa-addresses.workspace = true
-kaspa-bip32.workspace = true
-kaspa-cli.workspace = true
-kaspa-consensus-core.workspace = true
-kaspa-core.workspace = true
-kaspa-metrics-core.workspace = true
-kaspa-ng-macros.workspace = true
-kaspa-notify.workspace = true
-kaspa-rpc-core.workspace = true
-kaspa-utils.workspace = true
-kaspa-wallet-core.workspace = true
-kaspa-wallet-keys.workspace = true
-kaspa-wrpc-client.workspace = true
+apsak-addresses.workspace = true
+apsak-bip32.workspace = true
+apsak-cli.workspace = true
+apsak-consensus-core.workspace = true
+apsak-core.workspace = true
+apsak-metrics-core.workspace = true
+apsak-ng-macros.workspace = true
+apsak-notify.workspace = true
+apsak-rpc-core.workspace = true
+apsak-utils.workspace = true
+apsak-wallet-core.workspace = true
+apsak-wallet-keys.workspace = true
+apsak-wrpc-client.workspace = true
 
 workflow-core.workspace = true
 workflow-i18n.workspace = true
@@ -111,10 +111,10 @@ nix.workspace = true
 clap.workspace = true
 ctrlc.workspace = true
 env_logger.workspace = true
-kaspa-core.workspace = true
-kaspa-rpc-service.workspace = true
-kaspa-wrpc-server.workspace = true
-kaspad.workspace = true
+apsak-core.workspace = true
+apsak-rpc-service.workspace = true
+apsak-wrpc-server.workspace = true
+apsakd.workspace = true
 num_cpus.workspace = true
 open.workspace = true
 rlimit.workspace = true

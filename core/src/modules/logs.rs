@@ -33,7 +33,7 @@ impl ModuleT for Logs {
             .stick_to_bottom(true)
             .show(ui, |ui| {
 
-                for log in self.runtime.kaspa_service().logs().iter() {
+                for log in self.runtime.apsak_service().logs().iter() {
                     ui.label(RichText::from(log));
                 }
             });
@@ -48,7 +48,7 @@ impl ModuleT for Logs {
         if ui.put(button_rect, copy_to_clipboard)
             .on_hover_text_at_pointer(i18n("Copy logs to clipboard"))
             .clicked() {
-                let logs = self.runtime.kaspa_service().logs().iter().map(|log| log.to_string()).collect::<Vec<String>>().join("\n");
+                let logs = self.runtime.apsak_service().logs().iter().map(|log| log.to_string()).collect::<Vec<String>>().join("\n");
                 ui.output_mut(|o| o.copied_text = logs);
                 runtime().notify_clipboard(i18n("Copied to clipboard"));
             }

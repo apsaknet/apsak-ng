@@ -1,20 +1,20 @@
 pub use cfg_if::cfg_if;
 pub use downcast_rs::{impl_downcast, Downcast, DowncastSync};
-pub use kaspa_consensus_core::constants::SOMPI_PER_KASPA;
-pub use kaspa_consensus_core::network::{NetworkId, NetworkType};
-pub use kaspa_consensus_core::Hash as KaspaHash;
-pub use kaspa_metrics_core::MetricsSnapshot;
-pub use kaspa_rpc_core::api::rpc::RpcApi;
-pub use kaspa_utils::hex::{FromHex, ToHex};
-pub use kaspa_utils::{hashmap::GroupExtension, networking::ContextualNetAddress};
-pub use kaspa_wallet_core::prelude::{
+pub use apsak_consensus_core::constants::IPMOS_PER_APSAK;
+pub use apsak_consensus_core::network::{NetworkId, NetworkType};
+pub use apsak_consensus_core::Hash as apsaKHash;
+pub use apsak_metrics_core::MetricsSnapshot;
+pub use apsak_rpc_core::api::rpc::RpcApi;
+pub use apsak_utils::hex::{FromHex, ToHex};
+pub use apsak_utils::{hashmap::GroupExtension, networking::ContextualNetAddress};
+pub use apsak_wallet_core::prelude::{
     Account as CoreAccount, AccountCreateArgs, AccountCreateArgsBip32, AccountDescriptor,
-    AccountId, AccountKind, Address, Balance, DynRpcApi, IdT, KaspaRpcClient, Language,
+    AccountId, AccountKind, Address, Balance, DynRpcApi, IdT, ApsakRpcClient, Language,
     MetricsUpdate, MetricsUpdateKind, Mnemonic, PrvKeyDataArgs, PrvKeyDataCreateArgs, PrvKeyDataId,
     PrvKeyDataInfo, Secret, SyncState, TransactionId, TransactionRecord, Wallet as CoreWallet,
     WalletApi, WalletCreateArgs, WalletDescriptor, WordCount, WrpcEncoding,
 };
-pub use kaspa_wallet_core::utils::*;
+pub use apsak_wallet_core::utils::*;
 
 pub use async_trait::async_trait;
 pub use borsh::{BorshDeserialize, BorshSerialize};
@@ -83,7 +83,7 @@ pub use crate::result::Result;
 pub use crate::runtime::{runtime, spawn, spawn_with_result, Payload, Runtime, Service};
 pub use crate::servers::{load_public_servers, public_servers, Server};
 pub use crate::settings::{
-    KaspadNodeKind, NetworkInterfaceConfig, NetworkInterfaceKind, NodeConnectionConfigKind,
+    ApsakdNodeKind, NetworkInterfaceConfig, NetworkInterfaceKind, NodeConnectionConfigKind,
     NodeMemoryScale, NodeSettings, RpcConfig, RpcOptions, Settings, UserInterfaceSettings,
 };
 pub use crate::state::State;

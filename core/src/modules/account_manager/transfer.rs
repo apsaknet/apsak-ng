@@ -28,7 +28,7 @@ impl<'context> Transfer<'context> {
         if let Some(account) = default_account {
             self.context.transfer_to_account = Some(account.clone());
             ui.label(format!("Transferring funds to: {}", account.name_or_id()));
-            ui.label(format!("Destination balance: {}", sompi_to_kaspa_string_with_suffix(account.balance().map(|balance|balance.mature).unwrap_or(0), network_type)));
+            ui.label(format!("Destination balance: {}", ipmos_to_apsak_string_with_suffix(account.balance().map(|balance|balance.mature).unwrap_or(0), network_type)));
         } else {
 
             if self.context.transfer_to_account.as_ref().map(|account|account.id() == rc.account.id()).unwrap_or_default() {
@@ -42,7 +42,7 @@ impl<'context> Transfer<'context> {
                 let response = ui.vertical_centered(|ui| {
                     if let Some(account) = transfer_to_account {
                         let response = ui.add(Label::new(format!("Transferring funds to: {} ⏷", account.name_or_id())).sense(Sense::click()));
-                        ui.label(format!("Destination balance: {}", sompi_to_kaspa_string_with_suffix(account.balance().map(|balance|balance.mature).unwrap_or(0), network_type)));
+                        ui.label(format!("Destination balance: {}", ipmos_to_apsak_string_with_suffix(account.balance().map(|balance|balance.mature).unwrap_or(0), network_type)));
                         response
                     } else if self.context.send_amount_text.is_not_empty() {
                         ui.add(Label::new(RichText::new("Please select destination account ⏷").color(theme_color().warning_color)).sense(Sense::click()))

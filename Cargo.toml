@@ -10,17 +10,17 @@ default-members = ["app"]
 
 [workspace.package]
 rust-version = "1.78.0"
-version = "0.2.6"
-authors = ["ASPECTRON Inc.","Kaspa Developers"]
+version = "1.0.0"
+authors = ["ASPECTRON Inc.","apsaK Developers"]
 license = "PROPRIETARY"
 edition = "2021"
-repository = "https://github.com/aspectron/kaspa-ng"
+repository = "https://github.com/apsaknet/apsak-ng"
 
 [workspace.dependencies]
+apsak-ng = { version = "1.0.0", path = "app/" }
+apsak-ng-core = { version = "1.0.0", path = "core/" }
+apsak-ng-macros = { version = "1.0.0", path = "macros/" }
 
-kaspa-ng = { version = "0.2.3", path = "app/" }
-kaspa-ng-core = { version = "0.2.3", path = "core/" }
-kaspa-ng-macros = { version = "0.2.3", path = "macros/" }
 
 # ___________________
 #  ____ ____ _  _ _ 
@@ -60,72 +60,38 @@ egui-notify = "=0.11.0"
 #  |  \ |__| ___]  |    |      | \_ |  | ___] |    |  | 
 # _______________________________________________________
 
-# kaspa-addresses = "0.13.4"
-# kaspa-alloc = "0.13.4"
-# kaspa-bip32 = "0.13.4"
-# kaspa-cli = "0.13.4"
-# kaspa-consensus-core = "0.13.4"
-# kaspa-core = "0.13.4"
-# kaspa-metrics-core = "0.13.4"
-# kaspa-notify = "0.13.4"
-# kaspa-rpc-core = "0.13.4"
-# kaspa-rpc-service = "0.13.4"
-# kaspa-utils = "0.13.4"
-# kaspa-wallet-core = "0.13.4"
-# kaspa-wrpc-client = "0.13.4"
-# kaspa-wrpc-server = "0.13.4"
-# kaspad = "0.13.4"
+# apsak-addresses = "0.13.4"
+# apsak-alloc = "0.13.4"
+# apsak-bip32 = "0.13.4"
+# apsak-cli = "0.13.4"
+# apsak-consensus-core = "0.13.4"
+# apsak-core = "0.13.4"
+# apsak-metrics-core = "0.13.4"
+# apsak-notify = "0.13.4"
+# apsak-rpc-core = "0.13.4"
+# apsak-rpc-service = "0.13.4"
+# apsak-utils = "0.13.4"
+# apsak-wallet-core = "0.13.4"
+# apsak-wrpc-client = "0.13.4"
+# apsak-wrpc-server = "0.13.4"
+# apsakd = "0.13.4"
 
-# kaspa-addresses = { path = "../rusty-kaspa/crypto/addresses" }
-# kaspa-alloc = { path = "../rusty-kaspa/utils/alloc" }
-# kaspa-bip32 = { path = "../rusty-kaspa/wallet/bip32" }
-# kaspa-cli = { path = "../rusty-kaspa/cli" }
-# kaspa-consensus-core = { path = "../rusty-kaspa/consensus/core" }
-# kaspa-core = { path = "../rusty-kaspa/core" }
-# kaspa-metrics-core = { path = "../rusty-kaspa/metrics/core" }
-# kaspa-notify = { path = "../rusty-kaspa/notify" }
-# kaspa-rpc-core = { path = "../rusty-kaspa/rpc/core" }
-# kaspa-rpc-service = { path = "../rusty-kaspa/rpc/service" }
-# kaspa-utils = { path = "../rusty-kaspa/utils" }
-# kaspa-wallet-core = { path = "../rusty-kaspa/wallet/core" }
-# kaspa-wallet-keys = { path = "../rusty-kaspa/wallet/keys" }
-# kaspa-wrpc-client = { path = "../rusty-kaspa/rpc/wrpc/client"}
-# kaspa-wrpc-server = { path = "../rusty-kaspa/rpc/wrpc/server" }
-# kaspad = { path = "../rusty-kaspa/kaspad" }
-
-# kaspa-addresses = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-alloc = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-bip32 = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-cli = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-consensus-core = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-core = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-metrics-core = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-notify = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-rpc-core = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-rpc-service = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-utils = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-wallet-core = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-wallet-keys = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-wrpc-client = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspa-wrpc-server = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-# kaspad = { git = "https://github.com/kaspanet/rusty-kaspa.git", branch = "master" }
-
-kaspa-addresses = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-alloc = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-bip32 = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-cli = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-consensus-core = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-core = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-metrics-core = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-notify = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-rpc-core = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-rpc-service = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-utils = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-wallet-core = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-wallet-keys = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-wrpc-client = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspa-wrpc-server = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
-kaspad = { git = "https://github.com/aspectron/rusty-kaspa.git", branch = "typescript" }
+apsak-addresses = { path = "../rusty-apsak/crypto/addresses" }
+apsak-alloc = { path = "../rusty-apsak/utils/alloc" }
+apsak-bip32 = { path = "../rusty-apsak/wallet/bip32" }
+apsak-cli = { path = "../rusty-apsak/cli" }
+apsak-consensus-core = { path = "../rusty-apsak/consensus/core" }
+apsak-core = { path = "../rusty-apsak/core" }
+apsak-metrics-core = { path = "../rusty-apsak/metrics/core" }
+apsak-notify = { path = "../rusty-apsak/notify" }
+apsak-rpc-core = { path = "../rusty-apsak/rpc/core" }
+apsak-rpc-service = { path = "../rusty-apsak/rpc/service" }
+apsak-utils = { path = "../rusty-apsak/utils" }
+apsak-wallet-core = { path = "../rusty-apsak/wallet/core" }
+apsak-wallet-keys = { path = "../rusty-apsak/wallet/keys" }
+apsak-wrpc-client = { path = "../rusty-apsak/rpc/wrpc/client" }
+apsak-wrpc-server = { path = "../rusty-apsak/rpc/wrpc/server" }
+apsakd = { path = "../rusty-apsak/apsakd" }
 
 # _________________________________________________________
 #  _ _ _ ____ ____ _  _ ____ _    ____ _ _ _    ____ ____ 

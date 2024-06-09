@@ -1,6 +1,6 @@
 use crate::imports::*;
-// use kaspa_ng_core::interop; //::transport;
-use kaspa_ng_core::{
+// use apsak_ng_core::interop; //::transport;
+use apsak_ng_core::{
     imports::window,
     interop::{Client, Request},
 };
@@ -79,11 +79,11 @@ impl ClientReceiver {
 
         match target {
             Target::Wallet => {
-                let event = Box::new(kaspa_wallet_core::events::Events::try_from_slice(&data)?);
+                let event = Box::new(apsak_wallet_core::events::Events::try_from_slice(&data)?);
 
                 self.application_events
                     .sender
-                    .try_send(kaspa_ng_core::events::Events::Wallet { event })
+                    .try_send(apsak_ng_core::events::Events::Wallet { event })
                     .unwrap();
             }
             Target::Runtime => {

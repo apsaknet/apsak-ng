@@ -1,12 +1,12 @@
 use crate::imports::*;
-use crate::runtime::services::kaspa::{Config, KaspadServiceEvents};
+use crate::runtime::services::apsak::{Config, ApsakdServiceEvents};
 use std::process::Stdio;
 use tokio::io::{AsyncBufReadExt, BufReader};
 use tokio::process::Command;
 use workflow_core::prelude::DuplexChannel;
 
-/// Termination method with which to terminate the kaspad process.
-/// This should remain Sigkill until Kaspad learns to terminate
+/// Termination method with which to terminate the apsakd process.
+/// This should remain Sigkill until Apsakd learns to terminate
 /// rapidly during it's sync process.
 #[derive(Default, Debug, Clone, Eq, PartialEq)]
 enum TerminationMethod {
@@ -19,7 +19,7 @@ struct Inner {
     path: Option<PathBuf>,
     is_running: Arc<AtomicBool>,
     pid: Mutex<Option<u32>>,
-    service_events: Channel<KaspadServiceEvents>,
+    service_events: Channel<ApsakdServiceEvents>,
     task_ctl: DuplexChannel,
     termination_method: TerminationMethod,
 }
@@ -30,7 +30,7 @@ pub struct Daemon {
 }
 
 impl Daemon {
-    pub fn new(path: Option<PathBuf>, service_events: &Channel<KaspadServiceEvents>) -> Self {
+    pub fn new(path: Option<PathBuf>, service_events: &Channel<ApsakdServiceEvents>) -> Self {
         Self {
             inner: Arc::new(Inner {
                 path,
@@ -56,13 +56,13 @@ impl Daemon {
         use nix::sys::signal::Signal;
         use nix::unistd::Pid;
         if let Err(err) = nix::sys::signal::kill(Pid::from_raw(pid as i32), Signal::SIGTERM) {
-            println!("kaspad sigterm error: {:?}", err);
+            println!("apsakd sigterm error: {:?}", err);
         }
     }
 }
 
 #[async_trait]
-impl super::Kaspad for Daemon {
+impl super::Apsakd for Daemon {
     async fn start(self: Arc<Self>, config: Config) -> Result<()> {
         let mut cmd = if let Some(path) = self.inner().path.clone() {
             Command::new(path)
@@ -73,7 +73,7 @@ impl super::Kaspad for Daemon {
 
         let cmd = cmd
             .args(config)
-            .env("KASPA_NG_DAEMON", "1")
+            .env("APSAK_NG_DAEMON", "1")
             .stdout(Stdio::piped());
 
         let is_running = self.inner().is_running.clone();
@@ -107,16 +107,16 @@ impl super::Kaspad for Daemon {
                                 this.sigterm(_pid);
                             }
                         } else if let Err(err) = child.start_kill() {
-                            println!("kaspa daemon start_kill error: {:?}", err);
+                            println!("apsak daemon start_kill error: {:?}", err);
                         }
                     }
                     status = child.wait().fuse() => {
                         match status {
                             Ok(_status) => {
-                                // println!("kaspad shutdown: {:?}", _status);
+                                // println!("apsakd shutdown: {:?}", _status);
                             }
                             Err(err) => {
-                                println!("kaspad shutdown error: {:?}", err);
+                                println!("apsakd shutdown error: {:?}", err);
                             }
                         }
                         is_running.store(false,Ordering::SeqCst);
@@ -125,8 +125,8 @@ impl super::Kaspad for Daemon {
 
                     line = reader.next_line().fuse() => {
                         if let Ok(Some(line)) = line {
-                            // println!("kaspad: {}", line);
-                            stdout_relay_sender.send(KaspadServiceEvents::Stdout { line }).await.unwrap();
+                            // println!("apsakd: {}", line);
+                            stdout_relay_sender.send(ApsakdServiceEvents::Stdout { line }).await.unwrap();
                         }
                     }
                 }

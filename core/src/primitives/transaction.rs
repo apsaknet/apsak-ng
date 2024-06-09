@@ -1,7 +1,7 @@
 use crate::imports::*;
 use egui_phosphor::light::*;
-use kaspa_consensus_core::tx::{TransactionInput, TransactionOutpoint, TransactionOutput};
-use kaspa_wallet_core::storage::{
+use apsak_consensus_core::tx::{TransactionInput, TransactionOutpoint, TransactionOutput};
+use apsak_wallet_core::storage::{
     transaction::{TransactionData, UtxoRecord},
     TransactionKind,
 };
@@ -135,11 +135,11 @@ impl Transaction {
         let Context { record, maturity } = &*self.context();
 
         let padding = 9 + largest
-            .map(|largest| sompi_to_kaspa(largest).trunc().separated_string().len())
+            .map(|largest| ipmos_to_apsak(largest).trunc().separated_string().len())
             .unwrap_or_default();
 
-        let ps2k = |sompi| padded_sompi_to_kaspa_string_with_suffix(sompi, &network_type, padding);
-        let s2k = |sompi| sompi_to_kaspa_string_with_suffix(sompi, &network_type);
+        let ps2k = |ipmos| padded_ipmos_to_apsak_string_with_suffix(ipmos, &network_type, padding);
+        let s2k = |ipmos| ipmos_to_apsak_string_with_suffix(ipmos, &network_type);
 
         let timestamp = record
             .unixtime_as_locale_string()
@@ -338,14 +338,14 @@ impl Transaction {
                 } else {
                     ljb(&header)
                         .text("Sweep:", default_color)
-                        .text(&sompi_to_kaspa_string(*aggregate_input_value), strong_color)
+                        .text(&ipmos_to_apsak_string(*aggregate_input_value), strong_color)
                         .text("Fees:", default_color)
                         .text(
-                            &sompi_to_kaspa_string(*fees),
+                            &ipmos_to_apsak_string(*fees),
                             TransactionKind::Outgoing.as_color(),
                         )
                         .text("Change:", default_color)
-                        .text(&sompi_to_kaspa_string(*change_value), strong_color)
+                        .text(&ipmos_to_apsak_string(*change_value), strong_color)
                 };
 
                 // ui.collapsable(&transaction_id, false, |ui,state| {
@@ -383,14 +383,14 @@ impl Transaction {
                 //         } else {
                 //             // LayoutJobBuilder::new(16.0, Some(font_id_header.clone()))
                 //             // .text("Sweep:", default_color)
-                //             // .text(&sompi_to_kaspa_string(*aggregate_input_value), strong_color)
+                //             // .text(&ipmos_to_apsak_string(*aggregate_input_value), strong_color)
                 //             // .text("Fees:", default_color)
                 //             // .text(
-                //             //     &sompi_to_kaspa_string(*fees),
+                //             //     &ipmos_to_apsak_string(*fees),
                 //             //     TransactionKind::Outgoing.as_color(),
                 //             // )
                 //             // .text("Change:", default_color)
-                //             // .text(&sompi_to_kaspa_string(*change_value), strong_color)
+                //             // .text(&ipmos_to_apsak_string(*change_value), strong_color)
                 //         }
 
                 //         if !maturity.unwrap_or(true) {
@@ -537,13 +537,13 @@ impl Transaction {
                 collapsing_header.show(ui, |ui| {
                     ljb(&content)
                         .text("Sweep:", default_color)
-                        .text(&sompi_to_kaspa_string(aggregate_input_value), strong_color)
+                        .text(&ipmos_to_apsak_string(aggregate_input_value), strong_color)
                         .label(ui);
 
                     ljb(&content)
                         .text("Fees:", default_color)
                         .text(
-                            &sompi_to_kaspa_string(*fees),
+                            &ipmos_to_apsak_string(*fees),
                             TransactionKind::Outgoing.as_color(),
                         )
                         .label(ui);
@@ -555,50 +555,50 @@ impl Transaction {
 }
 
 #[inline]
-pub fn sompi_to_kaspa(sompi: u64) -> f64 {
-    sompi as f64 / SOMPI_PER_KASPA as f64
+pub fn ipmos_to_apsak(ipmos: u64) -> f64 {
+    ipmos as f64 / IPMOS_PER_APSAK as f64
 }
 
 #[inline]
-pub fn kaspa_to_sompi(kaspa: f64) -> u64 {
-    (kaspa * SOMPI_PER_KASPA as f64) as u64
+pub fn apsak_to_ipmos(apsak: f64) -> u64 {
+    (apsak * IPMOS_PER_APSAK as f64) as u64
 }
 
 #[inline]
-pub fn sompi_to_kaspa_string(sompi: u64) -> String {
-    separated_float!(format!("{:.8}", sompi_to_kaspa(sompi)))
+pub fn ipmos_to_apsak_string(ipmos: u64) -> String {
+    separated_float!(format!("{:.8}", ipmos_to_apsak(ipmos)))
 }
 #[inline]
-pub fn padded_sompi_to_kaspa_string(sompi: u64, padding: usize) -> String {
-    separated_float!(format!("{:.8}", sompi_to_kaspa(sompi)))
+pub fn padded_ipmos_to_apsak_string(ipmos: u64, padding: usize) -> String {
+    separated_float!(format!("{:.8}", ipmos_to_apsak(ipmos)))
         .pad_to_width_with_alignment(padding, Alignment::Right)
 }
 
-pub fn kaspa_suffix(network_type: &NetworkType) -> &'static str {
+pub fn apsak_suffix(network_type: &NetworkType) -> &'static str {
     match network_type {
-        NetworkType::Mainnet => "KAS",
-        NetworkType::Testnet => "TKAS",
-        NetworkType::Simnet => "SKAS",
-        NetworkType::Devnet => "DKAS",
+        NetworkType::Mainnet => "SAK",
+        NetworkType::Testnet => "TSAK",
+        NetworkType::Simnet => "SSAK",
+        NetworkType::Devnet => "DSAK",
     }
 }
 
 #[inline]
-pub fn sompi_to_kaspa_string_with_suffix(sompi: u64, network_type: &NetworkType) -> String {
-    let kas = sompi_to_kaspa(sompi).separated_string();
-    let suffix = kaspa_suffix(network_type);
-    format!("{kas} {suffix}")
+pub fn ipmos_to_apsak_string_with_suffix(ipmos: u64, network_type: &NetworkType) -> String {
+    let sak = ipmos_to_apsak(ipmos).separated_string();
+    let suffix = apsak_suffix(network_type);
+    format!("{sak} {suffix}")
 }
 
 #[inline]
-pub fn padded_sompi_to_kaspa_string_with_suffix(
-    sompi: u64,
+pub fn padded_ipmos_to_apsak_string_with_suffix(
+    ipmos: u64,
     network_type: &NetworkType,
     padding: usize,
 ) -> String {
-    let kas = padded_sompi_to_kaspa_string(sompi, padding);
-    let suffix = kaspa_suffix(network_type);
-    format!("{kas} {suffix}")
+    let sak = padded_ipmos_to_apsak_string(ipmos, padding);
+    let suffix = apsak_suffix(network_type);
+    format!("{sak} {suffix}")
 }
 
 pub fn paint_header_icon(ui: &mut Ui, openness: f32, response: &Response) {

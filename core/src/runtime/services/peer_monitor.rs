@@ -1,5 +1,5 @@
 use crate::imports::*;
-use kaspa_rpc_core::RpcPeerInfo;
+use apsak_rpc_core::RpcPeerInfo;
 
 pub const PEER_POLLING_INTERVAL_SECONDS: u64 = 1; // 1 sec
 

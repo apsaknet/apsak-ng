@@ -1,9 +1,9 @@
 use crate::imports::*;
 use crate::runtime::Service;
 pub use futures::{future::FutureExt, select, Future};
-use kaspa_metrics_core::{Metric, Metrics, MetricsSnapshot};
+use apsak_metrics_core::{Metric, Metrics, MetricsSnapshot};
 #[allow(unused_imports)]
-use kaspa_wallet_core::rpc::{NotificationMode, Rpc, RpcCtl, WrpcEncoding};
+use apsak_wallet_core::rpc::{NotificationMode, Rpc, RpcCtl, WrpcEncoding};
 
 #[allow(clippy::identity_op)]
 pub const MAX_METRICS_SAMPLES: usize = 60 * 60 * 24 * 1; // 1 day

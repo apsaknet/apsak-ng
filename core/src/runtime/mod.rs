@@ -33,7 +33,7 @@ pub struct Inner {
     // adaptor: Option<Arc<dyn Adaptor>>,
     adaptor: Option<Arc<Adaptor>>,
 
-    kaspa: Arc<KaspaService>,
+    apsak: Arc<ApsakService>,
     peer_monitor_service: Arc<PeerMonitorService>,
     update_monitor_service: Arc<UpdateMonitorService>,
     market_monitor_service: Arc<MarketMonitorService>,
@@ -44,7 +44,7 @@ pub struct Inner {
     block_dag_monitor_service: Arc<BlockDagMonitorService>,
 }
 
-/// Runtime is a core component of the Kaspa NG application responsible for
+/// Runtime is a core component of the apsaK NG application responsible for
 /// running application services and communication between these services
 /// and the application UI.
 #[derive(Clone)]
@@ -66,7 +66,7 @@ impl Runtime {
         let application_events =
             application_events.unwrap_or_else(ApplicationEventsChannel::unbounded);
         let repaint_service = Arc::new(RepaintService::new(application_events.clone(), settings));
-        let kaspa = Arc::new(KaspaService::new(
+        let apsak = Arc::new(ApsakService::new(
             application_events.clone(),
             settings,
             wallet_api,
@@ -102,7 +102,7 @@ impl Runtime {
 
         let services: Mutex<Vec<Arc<dyn Service>>> = Mutex::new(vec![
             repaint_service.clone(),
-            kaspa.clone(),
+            apsak.clone(),
             peer_monitor_service.clone(),
             market_monitor_service.clone(),
             update_monitor_service.clone(),
@@ -117,7 +117,7 @@ impl Runtime {
                 services,
                 application_events,
                 repaint_service,
-                kaspa,
+                apsak,
                 peer_monitor_service,
                 market_monitor_service,
                 update_monitor_service,
@@ -215,16 +215,16 @@ impl Runtime {
 
     /// Returns the reference to the wallet API.
     pub fn wallet(&self) -> Arc<dyn WalletApi> {
-        self.inner.kaspa.wallet()
+        self.inner.apsak.wallet()
     }
 
     pub fn repaint_service(&self) -> &Arc<RepaintService> {
         &self.inner.repaint_service
     }
 
-    /// Returns the reference to the kaspa service.
-    pub fn kaspa_service(&self) -> &Arc<KaspaService> {
-        &self.inner.kaspa
+    /// Returns the reference to the apsak service.
+    pub fn apsak_service(&self) -> &Arc<ApsakService> {
+        &self.inner.apsak
     }
 
     pub fn peer_monitor_service(&self) -> &Arc<PeerMonitorService> {
@@ -415,13 +415,13 @@ where
 }
 
 /// Gracefully halt the runtime runtime. This is used
-/// to shutdown kaspad when the kaspa-ng process exit
+/// to shutdown apsakd when the apsak-ng process exit
 /// is an inevitable eventuality.
 #[cfg(not(target_arch = "wasm32"))]
 pub fn halt() {
     if let Some(runtime) = try_runtime() {
         runtime.try_send(Events::Exit).ok();
-        runtime.kaspa_service().clone().terminate();
+        runtime.apsak_service().clone().terminate();
 
         let handle = tokio::spawn(async move { runtime.shutdown().await });
 
@@ -433,7 +433,7 @@ pub fn halt() {
 
 /// Attempt to halt the runtime runtime but exit the process
 /// if it takes too long. This is used in attempt to shutdown
-/// kaspad if the kaspa-ng process panics, which can result
+/// apsakd if the apsak-ng process panics, which can result
 /// in a still functioning zombie child process on unix systems.
 #[cfg(not(target_arch = "wasm32"))]
 pub fn abort() {

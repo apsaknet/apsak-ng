@@ -123,7 +123,7 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Run cargo build
-        run: cargo build --bin kaspa-ng --release --workspace --all --tests --benches
+        run: cargo build --bin apsak-ng --release --workspace --all --tests --benches
 
       - name: Run cargo test regular features
         run: cargo nextest run --release --workspace
@@ -255,7 +255,7 @@ jobs:
           cp ./extensions/chrome/popup.js ./dist-chrome/
           cp ./extensions/chrome/background.js ./dist-chrome/
           # build
-          wasm-pack build --target web --out-name kaspa-ng --out-dir ../../dist-chrome ./extensions/chrome
+          wasm-pack build --target web --out-name apsak-ng --out-dir ../../dist-chrome ./extensions/chrome
 
   build-release:
     runs-on: ${{ matrix.os }}
@@ -301,38 +301,38 @@ jobs:
       - name: Build on Linux
         if: runner.os == 'Linux'
         run: |
-          cargo build --bin kaspa-ng --release
+          cargo build --bin apsak-ng --release
           mkdir -p .debpkg/usr/bin
-          cp target/release/kaspa-ng .debpkg/usr/bin/
+          cp target/release/apsak-ng .debpkg/usr/bin/
 
       - name: Build on Windows
         if: runner.os == 'Windows'
         shell: bash
         run: |
-          cargo build --bin kaspa-ng --release
+          cargo build --bin apsak-ng --release
 
       - name: Build on MacOS
         if: runner.os == 'macOS'
         run: |
-          cargo build --bin kaspa-ng --release
+          cargo build --bin apsak-ng --release
 
       - name: Package Debian Release
         if: runner.os == 'Linux'
         id: package_debian
         uses: jiro4989/build-deb-action@v3
         with:
-          package: kaspa-ng
+          package: apsak-ng
           package_root: .debpkg
           maintainer: ASPECTRON
           version: "refs/tags/v0.0.1" # refs/tags/v*.*.*
           arch: 'amd64'
           depends: 'libglib2.0-0, libatk1.0-0, libgtk-3-0'
-          desc: 'Kaspa NG desktop p2p node and wallet'
+          desc: 'apsaK NG desktop p2p node and wallet'
       - name: Install and Test Debian Package
         if: runner.os == 'Linux'
         run: |
           sudo dpkg -i "${{ steps.package_debian.outputs.file_name }}"
-          kaspa-ng --version || echo "Failed to execute kaspa-ng --version"
+          apsak-ng --version || echo "Failed to execute apsak-ng --version"
       # - name: Package Details
       #   if: runner.os == 'Linux'
       #   run: |

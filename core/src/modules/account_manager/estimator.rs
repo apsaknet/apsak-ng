@@ -36,7 +36,7 @@ impl<'context> Estimator<'context> {
             Focus::Amount,
             |ui, text| {
                 ui.add_space(8.);
-                ui.label(RichText::new(format!("{} {} {}", i18n("Enter"), kaspa_suffix(network_type), i18n("amount to send"))).size(12.).raised());
+                ui.label(RichText::new(format!("{} {} {}", i18n("Enter"), apsak_suffix(network_type), i18n("amount to send"))).size(12.).raised());
                 ui.add_sized(Overview::editor_size(ui), TextEdit::singleline(text)
                     .vertical_align(Align::Center))
             },
@@ -62,8 +62,8 @@ impl<'context> Estimator<'context> {
                 core.network_pressure.capacity(), 
                 i18n("of its capacity."),
                 i18n("It is recommended that you add a priority fee of at least"),
-                0.001, 
-                kaspa_suffix(network_type),
+                0.05,
+                apsak_suffix(network_type),
                 i18n("to ensure faster transaction acceptance."),
             ));
         }
@@ -105,14 +105,14 @@ impl<'context> Estimator<'context> {
         let ready_to_send = match &*self.context.estimate.lock().unwrap() {
             EstimatorStatus::GeneratorSummary(estimate) => {
                 if let Some(final_transaction_amount) = estimate.final_transaction_amount {
-                    ui.label(format!("{} {}",i18n("Final Amount:"), sompi_to_kaspa_string_with_suffix(final_transaction_amount + estimate.aggregated_fees, network_type)));
+                    ui.label(format!("{} {}",i18n("Final Amount:"), ipmos_to_apsak_string_with_suffix(final_transaction_amount + estimate.aggregated_fees, network_type)));
                 }
-                let fee_title = if self.context.priority_fees_sompi != 0 {
+                let fee_title = if self.context.priority_fees_ipmos != 0 {
                     i18n("Network and Priority Fees:")
                 } else {
                     i18n("Network Fees:")
                 };
-                ui.label(format!("{} {}", fee_title, sompi_to_kaspa_string_with_suffix(estimate.aggregated_fees, network_type)));
+                ui.label(format!("{} {}", fee_title, ipmos_to_apsak_string_with_suffix(estimate.aggregated_fees, network_type)));
                 ui.label(format!("{} {} {} {}",i18n("Transactions:"), estimate.number_of_generated_transactions, i18n("UTXOs:"), estimate.aggregated_utxos));
                 
                 self.context.address_status == AddressStatus::Valid || (self.context.transaction_kind == Some(TransactionKind::Transfer) && self.context.transfer_to_account.is_some())
@@ -122,7 +122,7 @@ impl<'context> Estimator<'context> {
                 false
             }
             EstimatorStatus::None => {
-                ui.label(format!("{} {} {}", i18n("Please enter"), kaspa_suffix(network_type), i18n("amount to send")));
+                ui.label(format!("{} {} {}", i18n("Please enter"), apsak_suffix(network_type), i18n("amount to send")));
                 false
             }
         };
@@ -156,9 +156,9 @@ impl<'context> Estimator<'context> {
     fn update_user_args(&mut self) -> bool {
         let mut valid = true;
 
-        match try_kaspa_str_to_sompi(self.context.send_amount_text.as_str()) {
-            Ok(Some(sompi)) => {
-                self.context.send_amount_sompi = sompi;
+        match try_apsak_str_to_ipmos(self.context.send_amount_text.as_str()) {
+            Ok(Some(ipmos)) => {
+                self.context.send_amount_ipmos = ipmos;
             }
             Ok(None) => {
                 self.user_error(i18n("Please enter an amount").to_string());
@@ -170,12 +170,12 @@ impl<'context> Estimator<'context> {
             }
         }
 
-        match try_kaspa_str_to_sompi(self.context.priority_fees_text.as_str()) {
-            Ok(Some(sompi)) => {
-                self.context.priority_fees_sompi = sompi;
+        match try_apsak_str_to_ipmos(self.context.priority_fees_text.as_str()) {
+            Ok(Some(ipmos)) => {
+                self.context.priority_fees_ipmos = ipmos;
             }
             Ok(None) => {
-                self.context.priority_fees_sompi = 0;
+                self.context.priority_fees_ipmos = 0;
             }
             Err(err) => {
                 self.user_error(format!("{} {err}", i18n("Invalid fee amount:")));

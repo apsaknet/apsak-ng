@@ -1,23 +1,23 @@
 [package]
-name = "kaspa-ng"
+name = "apsak-ng"
 version.workspace = true
 authors.workspace = true
 license.workspace = true
 edition.workspace = true
 repository.workspace = true
-description = "Kaspa NG - Desktop p2p node based on Rusty Kaspa"
+description = "apsaK NG - Desktop p2p node based on Rusty apsaK"
 readme = "../README.md"
 
 [features]
 console = []
 
 [dependencies]
-kaspa-ng-core.workspace = true
+apsak-ng-core.workspace = true
 workflow-log.workspace = true
 cfg-if.workspace = true
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-kaspa-alloc.workspace = true
+apsak-alloc.workspace = true
 tokio.workspace = true
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
