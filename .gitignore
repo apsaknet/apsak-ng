@@ -12,3 +12,4 @@ datadir
 analyzer-target
 .vscode/launch.json
 core/resources/i18n/i18n.json
+apsak-ng.log

@@ -280,7 +280,8 @@ checksum = "25bdb32cbbdce2b519a9cd7df3a678443100e265d5e25ca763b7572a5104f5f3"
 
 [[package]]
 name = "apsak-addresses"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "borsh",
  "js-sys",
@@ -294,7 +295,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-addressmanager"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -315,14 +317,16 @@ dependencies = [
 
 [[package]]
 name = "apsak-alloc"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "mimalloc",
 ]
 
 [[package]]
 name = "apsak-bip32"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-utils",
  "borsh",
@@ -347,7 +351,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-cli"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-bip32",
@@ -392,7 +397,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-connectionmanager"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addressmanager",
  "apsak-core",
@@ -409,7 +415,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensus"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-consensus-notify",
@@ -447,7 +454,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensus-client"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "ahash 0.8.11",
  "apsak-addresses",
@@ -475,7 +483,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensus-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-core",
@@ -508,7 +517,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensus-notify"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -527,7 +537,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensus-wasm"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-client",
@@ -551,7 +562,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-consensusmanager"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-consensus-notify",
@@ -569,7 +581,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "cfg-if 1.0.0",
  "ctrlc",
@@ -587,7 +600,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-daemon"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -609,7 +623,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-database"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-hashes",
  "apsak-utils",
@@ -631,7 +646,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-grpc-client"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-core",
  "apsak-grpc-core",
@@ -662,7 +678,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-grpc-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -691,7 +708,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-grpc-server"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -725,7 +743,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-hashes"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-utils",
  "blake2b_simd",
@@ -743,7 +762,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-index-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-hashes",
@@ -762,7 +782,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-index-processor"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-consensus-notify",
@@ -787,7 +808,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-math"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-utils",
  "borsh",
@@ -806,14 +828,16 @@ dependencies = [
 
 [[package]]
 name = "apsak-merkle"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-hashes",
 ]
 
 [[package]]
 name = "apsak-metrics-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-core",
  "apsak-rpc-core",
@@ -829,7 +853,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-mining"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -853,7 +878,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-mining-errors"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "thiserror",
@@ -861,7 +887,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-muhash"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-hashes",
  "apsak-math",
@@ -871,7 +898,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "apsak-alloc",
  "apsak-ng-core",
@@ -883,7 +910,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-chrome"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "apsak-ng-core",
  "apsak-utils",
@@ -906,7 +933,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-core"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "ahash 0.8.11",
  "apsak-addresses",
@@ -986,7 +1013,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-macros"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "convert_case 0.6.0",
  "parse-variants",
@@ -1000,7 +1027,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-notify"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -1030,7 +1058,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-p2p-flows"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addressmanager",
  "apsak-connectionmanager",
@@ -1061,7 +1090,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-p2p-lib"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -1091,7 +1121,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-perf-monitor"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-core",
  "log",
@@ -1103,7 +1134,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-pow"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-client",
  "apsak-consensus-core",
@@ -1118,7 +1150,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-rpc-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-client",
@@ -1157,7 +1190,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-rpc-macros"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "convert_case 0.6.0",
  "proc-macro-error",
@@ -1169,7 +1203,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-rpc-service"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -1198,7 +1233,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-txscript"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -1221,7 +1257,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-txscript-errors"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "secp256k1",
  "thiserror",
@@ -1229,7 +1266,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-utils"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "async-channel 2.2.1",
  "borsh",
@@ -1251,7 +1289,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-utils-tower"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "cfg-if 1.0.0",
  "futures",
@@ -1265,7 +1304,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-utxoindex"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-consensusmanager",
@@ -1284,7 +1324,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wallet-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "aes",
  "ahash 0.8.11",
@@ -1361,7 +1402,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wallet-keys"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-bip32",
@@ -1393,7 +1435,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wallet-macros"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "convert_case 0.5.0",
  "proc-macro-error",
@@ -1406,7 +1449,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wasm-core"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "faster-hex 0.6.1",
  "js-sys",
@@ -1415,7 +1459,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wrpc-client"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-consensus-core",
@@ -1449,7 +1494,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wrpc-server"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-consensus-core",
  "apsak-core",
@@ -1476,7 +1522,8 @@ dependencies = [
 
 [[package]]
 name = "apsak-wrpc-wasm"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "ahash 0.8.11",
  "apsak-addresses",
@@ -1505,7 +1552,8 @@ dependencies = [
 
 [[package]]
 name = "apsakd"
-version = "1.0.0"
+version = "1.0.1"
+source = "git+https://github.com/apsaknet/rusty-apsak.git?branch=master#d27cff1f40f0bd0d44df7d2236c6b923c4ba3b87"
 dependencies = [
  "apsak-addresses",
  "apsak-addressmanager",
