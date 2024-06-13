@@ -13,15 +13,15 @@ network = "mainnet"
 address = "wss://ng2.apsak.org"
 
 [[server]]
-name = "ng3.apsak.org"
+name = "ng3.apsak.net"
 location = "EU"
 protocol = "borsh"
 network = "mainnet"
-address = "wss://ng3.apsak.org"
+address = "wss://ng3.apsak.net"
 
 [[server]]
-name = "ng4.apsak.org"
+name = "ng4.apsak.net"
 location = "EU"
 protocol = "borsh"
 network = "mainnet"
-address = "wss://ng4.apsak.org"
+address = "wss://ng4.apsak.net"
