@@ -1,5 +1,6 @@
 use std::fs;
 use std::panic;
+use std::backtrace::Backtrace;
 
 pub fn init_graceful_panic_handler() {
     let default_hook = panic::take_hook();
