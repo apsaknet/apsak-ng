@@ -898,7 +898,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "apsak-alloc",
  "apsak-ng-core",
@@ -910,7 +910,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-chrome"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "apsak-ng-core",
  "apsak-utils",
@@ -933,7 +933,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-core"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "ahash 0.8.11",
  "apsak-addresses",
@@ -1013,7 +1013,7 @@ dependencies = [
 
 [[package]]
 name = "apsak-ng-macros"
-version = "1.0.1"
+version = "1.0.2"
 dependencies = [
  "convert_case 0.6.0",
  "parse-variants",

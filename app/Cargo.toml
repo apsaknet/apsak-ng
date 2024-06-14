@@ -9,7 +9,7 @@ description = "apsaK NG - Desktop p2p node based on Rusty apsaK"
 readme = "../README.md"
 
 [features]
-console = []
+console = ["apsak-ng-core/console"]
 
 [dependencies]
 apsak-ng-core.workspace = true

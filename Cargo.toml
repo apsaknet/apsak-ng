@@ -10,16 +10,16 @@ default-members = ["app"]
 
 [workspace.package]
 rust-version = "1.78.0"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["ASPECTRON Inc.","apsaK Developers"]
 license = "PROPRIETARY"
 edition = "2021"
 repository = "https://github.com/apsaknet/apsak-ng"
 
 [workspace.dependencies]
-apsak-ng = { version = "1.0.1", path = "app/" }
-apsak-ng-core = { version = "1.0.1", path = "core/" }
-apsak-ng-macros = { version = "1.0.1", path = "macros/" }
+apsak-ng = { version = "1.0.2", path = "app/" }
+apsak-ng-core = { version = "1.0.2", path = "core/" }
+apsak-ng-macros = { version = "1.0.2", path = "macros/" }
 
 
 # ___________________
@@ -185,5 +185,12 @@ opt-level = 2
 [profile.native-release]
 inherits = "release"
 opt-level = 3
-lto = true
+# lto = true
+# strip = true
+
+[profile.console]
+inherits = "release"
+opt-level = 2
+strip = false
+# lto = true
 # strip = true
