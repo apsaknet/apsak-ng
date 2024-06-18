@@ -192,7 +192,7 @@ impl Overview {
 
                         ui.hyperlink_to_tab(
                             format!("• {DATABASE} {}",i18n("Explorer")),
-                            "https://explorer.apsak.org/",
+                            "https://rerolpxe.apsak.net/",
                         );
                         // ui.hyperlink_to_tab(
                         //     format!("• {DISCORD_LOGO} {}",i18n("Discord")),
