@@ -1,16 +1,9 @@
 [[server]]
-name = "ng1.apsak.org"
+name = "s.apsak-ng.org"
 location = "EU"
 protocol = "borsh"
 network = "mainnet"
-address = "wss://ng1.apsak.org"
-
-[[server]]
-name = "ng2.apsak.org"
-location = "EU"
-protocol = "borsh"
-network = "mainnet"
-address = "wss://ng2.apsak.org"
+address = "wss://s.apsak-ng.org"
 
 [[server]]
 name = "ng3.apsak.net"
